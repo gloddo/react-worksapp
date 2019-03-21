@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login</title>
+  <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+  <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity = "sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin = "anonymous" ></script>
+  <script type="text/javascript" src="script/script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="login-all">
+
+    <div class="login-logo">
+      <img src="res/logo-blk-b.png" />
+    </div>
+
+    <form class="login-form">
+      <p class="login-label">
+        Username
+      </p>
+      <input class="login-input" id="username" type="text" name="username" value="">
+      <p class="login-label">
+        Password
+      </p>
+      <input class="login-input" id="password" type="text" name="password" value="">
+
+      <span class="check">
+
+
+        <input class="chekbox" type="checkbox" name="remember-me" value="">
+        <p class="check-label">
+          Remember me?
+        </p>
+      </span>
+      <button type="button" name="button" onclick="login()">Submit</button>
+      <a class="forgot-password" href="#">
+        Forgot password?
+      </a>
+    </form>
+  </div>
+
+
+
+<script>
+
+
+
+
+    function login () {
+
+    var email = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert('email o password errate')
+    });
+   
+      firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(user)
+        var docRef = db.collection("users").doc(user.uid);
+        docRef.get().then(function(doc) {
+        if (doc.exists) {
+            location.href="index.html?id="+user.uid;
+        } else {
+            location.href="paginaprova.html"
+        }
+      });
+    }
+  })
+}
+
+
+
+
+  </script>
+
+</body>
+
+</html>

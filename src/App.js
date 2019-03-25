@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-<<<<<<< HEAD
+
 import ChatListEntry from "./components/ChatListEntry";
 import FavouriteNavbar from "./components/FavouriteNavbar"
-=======
 import ChatList from "./components/ChatList";
->>>>>>> cc981e60a732058a86c5dda33ec62d997131b2a3
 
 
 var array = [
@@ -40,12 +38,11 @@ var array = [
 class App extends Component {
   render() {
     return (
-<<<<<<< HEAD
-      <ChatListEntry name="Pippo" surname="Sowlo" role="Woman Beater" date={new Date()} notify={null}/>
-      <FavouriteNavbar />
-=======
-      <ChatList chats={array}/>
->>>>>>> cc981e60a732058a86c5dda33ec62d997131b2a3
+      <div>
+        <ChatListEntry name="Pippo" surname="Sowlo" role="Woman Beater" date={new Date()} notify={null}/>
+        <FavouriteNavbar />
+      </div>
+
     );
   }
 }

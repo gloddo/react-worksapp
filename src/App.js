@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import ProfilePic from "./components/ProfilePic";
+import Label from "./components/Label";
 
 class App extends Component {
   render() {

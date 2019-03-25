@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {format} from "date-fns/format";
-import {isThisYear} from "date-fns/is_this_year";
-import PropTypes from "prop-types"
+import { format } from "date-fns/format";
+import { isThisYear } from "date-fns/is_this_year";
+import PropTypes from "prop-types";
 
 export default class Date extends Component {
   render() {
@@ -23,5 +23,5 @@ export default class Date extends Component {
 
 Date.propTypes = {
   type: PropTypes.string,
-  date: PropTypes.instanceOf(Date),
-}
+  date: PropTypes.instanceOf(Date)
+};

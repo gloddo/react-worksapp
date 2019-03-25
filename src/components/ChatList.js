@@ -14,6 +14,7 @@ export default class ChatList extends Component {
           role={el.role}
           date={el.date}
           notify={el.notify}
+          selected={el.selected}
         />
       );
     });

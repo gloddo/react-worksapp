@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import dateFns from "date-fns";
+import {format} from "date-fns/format";
+import {isThisYear} from "date-fns/is_this_year";
+import PropTypes from "prop-types"
 
 export default class Date extends Component {
   render() {
     let dateFormat;
     if (this.props.type.includes("date")) {
-      if (dateFns.isThisYear(this.props.date)) {
+      if (isThisYear(this.props.date)) {
         dateFormat = "DD/MM";
       } else dateFormat = "DD/MM/YYYY";
     } else if (this.props.type.includes("time")) {
@@ -13,8 +15,13 @@ export default class Date extends Component {
     }
     return (
       <time className={this.props.type}>
-        {dateFns.format(this.props.date, dateFormat)}
+        {format(this.props.date, dateFormat)}
       </time>
     );
   }
+}
+
+Date.propTypes = {
+  type: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
 }

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import ChatList from "./components/ChatList";
 import FavouriteNavbar from "./components/FavouriteNavbar";
+import FavouriteNavbar from "./components/FavouriteNavbar"
+import ChatList from "./components/ChatList";
+
 
 
 var array = [
@@ -43,6 +46,7 @@ class App extends Component {
         <ChatList chats={array}/>
         <FavouriteNavbar chats={array}/>
       </div>
+
     );
   }
 }

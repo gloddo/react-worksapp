@@ -4,9 +4,6 @@ import "./App.css";
 import ChatListEntry from "./components/ChatListEntry";
 import FavouriteNavbar from "./components/FavouriteNavbar"
 import ChatList from "./components/ChatList";
-import FavouriteNavbar from "./components/FavouriteNavbar";
-import FavouriteNavbar from "./components/FavouriteNavbar"
-import ChatList from "./components/ChatList";
 
 
 

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
+
+import ChatListEntry from "./components/ChatListEntry";
+import FavouriteNavbar from "./components/FavouriteNavbar"
 import ChatList from "./components/ChatList";
+
 
 
 var array = [
@@ -10,7 +14,8 @@ var array = [
     role: "Woman Beater",
     date: new Date(),
     notify: 100,
-    img: "https://via.placeholder.com/75"
+    img: "https://via.placeholder.com/75",
+    state: 'red'
     
   },
   {
@@ -19,7 +24,8 @@ var array = [
     role: "Woman Beater",
     date: new Date(),
     notify: 100,
-    img: "https://via.placeholder.com/75"
+    img: "https://via.placeholder.com/75",
+    state: 'red'
     
   },
   {
@@ -28,14 +34,20 @@ var array = [
     role: "Woman Beater",
     date: new Date(),
     notify: 100,
-    img: "https://via.placeholder.com/75"
+    img: "https://via.placeholder.com/75",
+    state: 'red'
     
   }
 ]
 class App extends Component {
   render() {
     return (
-      <ChatList chats={array}/>
+      <div>
+        <ChatList chats={array}/>
+        <FavouriteNavbar chats={array}/>
+
+      </div>
+
     );
   }
 }

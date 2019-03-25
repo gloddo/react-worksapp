@@ -8,12 +8,13 @@ import Time from "./Time"
 export default class ChatListEntry extends Component {
   render() {
     return (
-      <article>
+      <article className="chatlist-entry">
         <ProfilePic img={this.props.img} state={this.props.state} />
         <Label
           name={this.props.name}
           surname={this.props.surname}
           role={this.props.role}
+          class="chatlist-entry-label"
         />
         <div>
           <Time type="time" date={this.props.date} />

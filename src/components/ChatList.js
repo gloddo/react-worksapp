@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChatListEntry from "./ChatListEntry";
+import "./ChatList.css"
 
 export default class ChatList extends Component {
   render() {

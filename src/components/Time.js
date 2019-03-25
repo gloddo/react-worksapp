@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { format } from "date-fns/format";
-import { isThisYear } from "date-fns/is_this_year";
+import format from "date-fns/format";
+import isThisYear from "date-fns/is_this_year";
 import PropTypes from "prop-types";
 
-export default class Date extends Component {
+export default class Time extends Component {
   render() {
     let dateFormat;
-    if (this.props.type.includes("date")) {
+    if (this.props.type.includes("date")) { 
       if (isThisYear(this.props.date)) {
         dateFormat = "DD/MM";
       } else dateFormat = "DD/MM/YYYY";

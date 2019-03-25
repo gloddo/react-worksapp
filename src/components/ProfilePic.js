@@ -10,7 +10,7 @@ export default class ProfilePic extends Component {
           src={this.props.img || "img/placeholder"}
           alt="pic"
         />
-        <shape className={this.props.state ? "green" : "red"} />
+        <div className={this.props.state ? "green" : "red"} />
       </picture>
     );
   }

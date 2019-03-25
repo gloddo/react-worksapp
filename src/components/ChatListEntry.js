@@ -14,9 +14,9 @@ export default class ChatListEntry extends Component {
           name={this.props.name}
           surname={this.props.surname}
           role={this.props.role}
-          class="chatlist-entry-label"
+          class="label-name"
         />
-        <div>
+        <div className="badges">
           <Time type="time" date={this.props.date} />
           <NotifyBadge notify={this.props.notify} />
         </div>

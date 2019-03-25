@@ -1,15 +1,30 @@
 .chatlist-entry {
   width: 375px;
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 7px;
 }
 
 .chatlist-entry .profile-pic {
-    height: 64px;
+  height: 58px;
 }
 
-.chatlist-entry-label {
-    margin: 3px;
+.chatlist-entry .label-name {
+  margin: 3px;
+}
 
+.chatlist-entry .labels {
+  width: 100%;
+  padding: 10px;
+}
+
+.chatlist-entry .badges {
+	padding: 10px;
+}
+
+.chatlist-entry picture {
+	height: 58px;
+	margin: 5px;
 }

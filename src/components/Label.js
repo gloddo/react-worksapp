@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default class Label extends Component {
   render() {
     return (
-      <div>
+      <div className="labels">
         <div>
           <div className={this.props.class}>
             {this.props.name} {this.props.surname}

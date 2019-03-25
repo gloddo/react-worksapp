@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
+
+import ChatListEntry from "./components/ChatListEntry";
+import FavouriteNavbar from "./components/FavouriteNavbar"
 import ChatList from "./components/ChatList";
 import FavouriteNavbar from "./components/FavouriteNavbar";
 import FavouriteNavbar from "./components/FavouriteNavbar"
@@ -43,7 +46,6 @@ class App extends Component {
   render() {
     return (
       <div>
-
         <ChatList chats={array}/>
         <FavouriteNavbar chats={array}/>
 

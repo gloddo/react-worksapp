@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div>
         <ChatListEntry name="Pippo" surname="Sowlo" role="Woman Beater" date={new Date()} notify={null}/>
-        <FavouriteNavbar />
+        <FavouriteNavbar img={array.img} state={'red'}/>
       </div>
 
     );

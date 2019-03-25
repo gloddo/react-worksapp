@@ -3,10 +3,9 @@ import ChatListEntry from "./ChatListEntry"
 
 export default class ChatList extends Component {
     render() {
-        let array = [0,1,2,3,4,5];
         return (
-            array.forEach(()=>{
-                <ChatListEntry />
+            this.props.chats.map((el, i)=>{
+                return <ChatListEntry key={i} img={el.img} name={el.name} surname={el.surname} role={el.role} date={el.date} notify={el.notify}/>
             })
         )
     }

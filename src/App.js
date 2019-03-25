@@ -43,8 +43,10 @@ class App extends Component {
   render() {
     return (
       <div>
+
         <ChatList chats={array}/>
         <FavouriteNavbar chats={array}/>
+
       </div>
 
     );

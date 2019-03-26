@@ -1,32 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import Messages from "./components/Messages";
+import Chat from "./components/Chat";
+import ChatList from "./components/ChatList";
 
-
-var array = [
-  {
-    date: new Date(),
-    text: "prova 1 2 3",
-    seen: true
-    
-  },
-  {
-    date: new Date(),
-    text: "prova 1 2 3",
-    seen: true
-    
-  },
-  {
-    date: new Date(),
-    text: "prova 1 2 3",
-    seen: false
-    
-  },
-]
 class App extends Component {
   render() {
     return (
-      <Messages messages={array}/>
+      <div>
+        <ChatList />;
+        <Chat />
+      </div>
     );
   }
 }

@@ -7,6 +7,7 @@ export default class Messages extends Component {
       return (
         <Message
           key={i}
+          sent={el.sent}
           text={el.text}
           date={el.date}
           seen={el.seen}

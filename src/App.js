@@ -1,41 +1,32 @@
 import React, { Component } from "react";
 import "./App.css";
-import ChatList from "./components/ChatList";
+import Messages from "./components/Messages";
 
 
 var array = [
   {
-    name: "pippo",
-    surname: "sowlo",
-    role: "Woman Beater",
     date: new Date(),
-    notify: 100,
-    img: "https://via.placeholder.com/75"
+    text: "prova 1 2 3",
+    seen: true
     
   },
   {
-    name: "pippo",
-    surname: "sowlo",
-    role: "Woman Beater",
     date: new Date(),
-    notify: 100,
-    img: "https://via.placeholder.com/75"
+    text: "prova 1 2 3",
+    seen: true
     
   },
   {
-    name: "pippo",
-    surname: "sowlo",
-    role: "Woman Beater",
     date: new Date(),
-    notify: 100,
-    img: "https://via.placeholder.com/75"
+    text: "prova 1 2 3",
+    seen: false
     
-  }
+  },
 ]
 class App extends Component {
   render() {
     return (
-      <ChatList chats={array}/>
+      <Messages messages={array}/>
     );
   }
 }

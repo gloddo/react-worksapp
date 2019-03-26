@@ -1,5 +1,5 @@
 .chatlist-entry {
-  width: 375px;
+  width: 100vw;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,7 @@
 
 .chatlist-entry .profile-pic {
   height: 58px;
+  border-radius: 10px;
 }
 
 .chatlist-entry .label-name {
@@ -21,10 +22,54 @@
 }
 
 .chatlist-entry .badges {
-	padding: 10px;
+  padding: 10px;
+  font-size: 0.9em;
 }
 
 .chatlist-entry picture {
 	height: 58px;
-	margin: 5px;
+  margin: 5px;
+  position: relative;
+}
+
+.selected {
+  background-color: gray;
+}
+
+.profile-pic.busy {
+  border: 3px solid #e94f37;
+}
+
+
+.profile-pic.free {
+  border: 3px solid  #0fa3b1;
+}
+
+div.free {
+  width: 15px;
+  height: 15px;
+  background-color: #0fa3b1;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+div.busy {
+  width: 15px;
+  height: 15px;
+  background-color: #e94f37;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.notify-badge {
+  border: 3px solid #0fa3b1;
+  border-radius: 20px;
+  text-align: center;
+  padding: 0 6px;
 }

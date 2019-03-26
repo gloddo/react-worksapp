@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ChatList />;
+        <ChatList />
         <Chat />
       </div>
     );

@@ -9,6 +9,7 @@ export default class Input extends Component {
         onChange={e => this.props.change(e)}
         value={this.props.value}
         onKeyUp={e => this.props.enter(e)}
+        placeholder={this.props.placeholder}
       />
     );
   }

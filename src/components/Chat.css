@@ -1,0 +1,109 @@
+.chat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 14px;
+  align-items: center;
+}
+
+.message {
+  border: 3px solid #0fa3b1;
+  border-radius: 10px;
+  background-color: #d6d6d6;
+  max-width: 240px;
+  font-size: 0.85em;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  position: relative;
+  word-break: break-word;
+}
+
+.sent .message {
+  background-color: white;
+}
+
+.sent {
+  flex-direction: row-reverse;
+}
+
+.sent .message:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #0fa3b1;
+  border-right: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  right: -23px;
+}
+
+.sent .message:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid white;
+  border-right: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  right: -17px;
+}
+
+.received .message:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #0fa3b1;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: -23px;
+}
+
+.received .message:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #d6d6d6;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: -17px;
+}
+
+.time-badge time {
+  display: block;
+  font-size: 0.8em;
+}
+
+.received time {
+  text-align: right;
+}
+
+.sent time {
+  text-align: left;
+}
+
+.chat-input {
+  font-size: 1.1em;
+  padding: 5px 15px;
+  border: 2px solid #0fa3b1;
+  border-radius: 10px;
+  width: 94vw;
+  position: absolute;
+  bottom: 6px;
+}
+
+.text-input {
+  display: flex;
+  justify-content: center;
+}
+
+.chat {
+    width: 97vw;
+  margin: auto;
+}

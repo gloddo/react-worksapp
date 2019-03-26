@@ -8,39 +8,56 @@ export default class ChatList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selected: "",
       chats: [
         {
-          date: new Date(2018, 3, 22),
-          text: "prova 1 2 3",
-          seen: true
+          name: "pippo",
+          surname: "sowlo",
+          role: "Woman Beater",
+          date: new Date(),
+          notify: 100,
+          img: "https://via.placeholder.com/58",
+          state: 'busy',
         },
         {
-          date: new Date(2019, 3, 22),
-          text: "prova 1 2 3",
-          seen: true,
-          sent: true
+          name: "pippo",
+          surname: "sowlo",
+          role: "Woman Beater",
+          date: new Date(),
+          notify: 100,
+          img: "https://via.placeholder.com/58",
+          state: 'busy',
         },
         {
-          date: new Date(2019, 3, 26),
-          text: "prova 1 2 3",
-          seen: false
+          name: "pippo",
+          surname: "sowlo",
+          role: "Woman Beater",
+          date: new Date(),
+          notify: 100,
+          img: "https://via.placeholder.com/58",
+          state: 'free',
         }
       ]
     };
   }
   
   render() {
-    return this.props.chats.map((el, i) => {
+    return this.state.chats.map((el, i) => {
       return (
         <ChatListEntry
           key={i}
+          id={i}
           img={el.img}
           name={el.name}
           surname={el.surname}
           role={el.role}
           date={el.date}
           notify={el.notify}
-          selected={el.selected}
+          state={el.state}
+          selected={i===this.state.selected}
+          click={id => {
+            this.setState({selected: id})}
+          }
         />
       );
     });

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Messages from "./Messages";
 import Input from "./Input";
+import "./Chat.css";
 
 export default class Chat extends Component {
   constructor(props) {
@@ -27,41 +28,47 @@ export default class Chat extends Component {
       ]
     };
   }
+
+  input = event => {
+    if (event.which === 13) {
+      var temp = [];
+      this.state.messages.forEach(el => {
+        el.seen = true;
+        temp.push(el);
+      });
+      this.setState({
+        messages: temp.concat({
+          text: event.target.value,
+          sent: true,
+          date: new Date()
+        }),
+        inputValue: ""
+      });
+    } else if (event.which === 110) {
+      this.setState({
+        messages: this.state.messages.concat({
+          text: event.target.value,
+          sent: false,
+          date: new Date()
+        }),
+        inputValue: ""
+      });
+    }
+  }
+
   render() {
     return (
       <section className="chat">
         <Messages messages={this.state.messages} />
-        <Input
-          type="chat-input"
-          value={this.state.inputValue}
-          change={event => this.setState({ inputValue: event.target.value })}
-          enter={event => {
-            if (event.which === 13) {
-              var temp = [];
-              this.state.messages.forEach(el => {
-                el.seen = true;
-                temp.push(el);
-              });
-              this.setState({
-                messages: temp.concat({
-                  text: event.target.value,
-                  sent: true,
-                  date: new Date()
-                }),
-                inputValue: ""
-              });
-            } else if (event.which === 110) {
-              this.setState({
-                messages: this.state.messages.concat({
-                  text: event.target.value,
-                  sent: false,
-                  date: new Date()
-                }),
-                inputValue: ""
-              });
-            }
-          }}
-        />
+        <div className="text-input">
+          <Input
+            type="chat-input"
+            value={this.state.inputValue}
+            change={event => this.setState({ inputValue: event.target.value })}
+            enter={this.input}
+            placeholder="Write here your message"
+          />
+        </div>
       </section>
     );
   }

@@ -1,22 +1,24 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import ProfilePic from "./ProfilePic";
 import Label from "./Label";
 import NotifyBadge from "./NotifyBadge";
 import Time from "./Time";
 
 export default class ChatListEntry extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: this.props.selected
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     selected: this.props.selected
+  //   };
+  // }
   render() {
     return (
-      <article
+      <article 
+        onClick={() => this.props.click(this.props.id)}
+        id={this.props.id}
         className={
-          this.state.selected ? "chatlist-entry selected" : "chatlist-entry"
+          this.props.selected ? "chatlist-entry selected" : "chatlist-entry"
         }
       >
         <ProfilePic img={this.props.img} state={this.props.state} />

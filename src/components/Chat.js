@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Messages from "./Messages";
 import Input from "./Input";
 import "./Chat.css";
+import { FaPaperPlane } from "react-icons/fa";
 
 export default class Chat extends Component {
   constructor(props) {
@@ -29,37 +30,43 @@ export default class Chat extends Component {
     };
   }
 
-  send = () => {
-    var temp = [];
-    this.state.messages.forEach(el => {
-      el.seen = true;
-      temp.push(el);
-    });
-    this.setState({
-      messages: temp.concat({
-        text: this.state.inputValue,
-        sent: true,
-        date: new Date()
-      }),
-      inputValue: ""
-    });
+  send = event => {
+    if (this.state.inputValue) {
+      var temp = [];
+      this.state.messages.forEach(el => {
+        el.seen = true;
+        temp.push(el);
+      });
+      this.setState({
+        messages: temp.concat({
+          text: this.state.inputValue,
+          sent: true,
+          date: new Date(),
+          seen: true
+        }),
+        inputValue: ""
+      });
+    }
+
+    event.preventDefault();
   };
 
   render() {
     return (
       <section className="chat">
         <Messages messages={this.state.messages} />
-        <div className="text-input">
+        <form className="text-input" onSubmit={this.send}>
           <Input
             type="chat-input"
             id="chat-input"
             value={this.state.inputValue}
             change={event => this.setState({ inputValue: event.target.value })}
-            send={this.send}
             placeholder="Write here your message"
           />
-          <button className="send-btn" onClick={this.send}>Invia</button>
-        </div>
+          <button className="send-btn" type="sumbit">
+            <FaPaperPlane size="1.8em" />
+          </button>
+        </form>
       </section>
     );
   }

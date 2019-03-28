@@ -65,7 +65,7 @@ export default class ChatList extends Component {
 
   render() {
     return (
-      <section>
+      <section className="chat-list">
         {this.state.chats.map((el, i) => {
           return (
             <ChatListEntry

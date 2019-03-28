@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     page: "home"
   };
-  changePage(pageActive) {  
+  changePage(pageActive) {
     this.setState({
       page: pageActive
     });
@@ -31,6 +31,7 @@ class App extends Component {
       { this.pageSwitch(this.state.page) }
     </div>
     )
+
   }
 }
 

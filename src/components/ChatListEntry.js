@@ -20,7 +20,12 @@ export default class ChatListEntry extends Component {
           this.props.selected ? "chatlist-entry selected" : "chatlist-entry"
         }
       >
-        <ProfilePic img={this.props.img} state={this.props.state} ball={true} />
+        <ProfilePic
+          img={this.props.img}
+          modal={false}
+          state={this.props.state}
+          ball={true}
+        />
         <Label
           name={this.props.name}
           surname={this.props.surname}

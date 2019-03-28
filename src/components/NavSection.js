@@ -5,8 +5,8 @@ export default class NavSection extends Component {
   render() {
     return (
       <li
-        onClick={() => {
-          this.props.fn("second");
+        onClick={link => {
+          this.props.click(link);
         }}
       >
         {this.props.children}

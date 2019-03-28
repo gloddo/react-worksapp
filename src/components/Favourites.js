@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import ChatListEntry from "./ChatListEntry";
-import "./ChatList.css";
-import FavouritesBar from "./FavouritesBar";
+import FavouritesEntry from "./FavouritesEntry";
+import "./Favourites.css";
 
-export default class ChatList extends Component {
+export default class Favourites extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,46 +44,29 @@ export default class ChatList extends Component {
           img: "https://via.placeholder.com/58",
           state: "free"
         }
-      ],
-      favourites: [
-        {
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          img: "https://via.placeholder.com/58",
-          state: "free"
-        }
       ]
     };
   }
 
   render() {
     return (
-      <section className="chat-list">
+      <section className="favourites">
         {this.state.chats.map((el, i) => {
           return (
-            <ChatListEntry
+            <FavouritesEntry
               key={i}
               img={el.img}
               name={el.name}
               surname={el.surname}
-              role={el.role}
-              date={el.date}
               notify={el.notify}
+              role={el.role}
               state={el.state}
-              selected={i === this.state.selected}
               click={() => {
-                this.setState({ selected: i });
+                // TODO
               }}
             />
           );
         })}
-        <FavouritesBar click={this.props.click} favourites={this.state.favourites}/>
       </section>
     );
   }

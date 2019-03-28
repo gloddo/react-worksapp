@@ -11,19 +11,19 @@ export default class FavouriteNavbar extends Component {
       <div>
         <nav className="navbar">
           <ul>
-            <NavSection fn={this.props.fn}>
+            <NavSection click={() => this.props.click("home")}>
               <FaHome className="n-icon" />
             </NavSection>
-            <NavSection fn={this.props.fn}>
+            <NavSection click={() => this.props.click("search")}>
               <FaSearch className="n-icon" />
             </NavSection>
-            <NavSection fn={this.props.fn}>
+            <NavSection click={() => {}}>
               <Logo />
             </NavSection>
-            <NavSection fn={this.props.fn}>
+            <NavSection click={() => this.props.click("newChat")}>
               <FaPlus className="n-icon" />
             </NavSection>
-            <NavSection fn={this.props.fn}>
+            <NavSection click={() => this.props.click("menu")}>
               <FaBars className="n-icon" />
             </NavSection>
           </ul>

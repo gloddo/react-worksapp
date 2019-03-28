@@ -4,11 +4,7 @@ import PropTypes from "prop-types";
 export default class NavSection extends Component {
   render() {
     return (
-      <li
-        onClick={link => {
-          this.props.click(link);
-        }}
-      >
+      <li>
         {this.props.children}
       </li>
     );

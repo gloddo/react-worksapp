@@ -8,65 +8,14 @@ export default class ChatList extends Component {
     super(props);
     this.state = {
       selected: "",
-      chats: [
-        {
-          name: "pippo",
-          surname: "sowlo",
-          role: "Some Job",
-          date: new Date(),
-          notify: 100,
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          name: "pippo",
-          surname: "sowlo",
-          role: "Some Job",
-          date: new Date(),
-          notify: 50,
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          name: "pippo",
-          surname: "sowlo",
-          role: "Some Job",
-          date: new Date(),
-          notify: 1,
-          img: "https://via.placeholder.com/58",
-          state: "free"
-        },
-        {
-          name: "pippo",
-          surname: "sowlo",
-          role: "Some Job",
-          date: new Date(),
-          notify: 0,
-          img: "https://via.placeholder.com/58",
-          state: "free"
-        }
-      ],
-      favourites: [
-        {
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          img: "https://via.placeholder.com/58",
-          state: "free"
-        }
-      ]
+      
     };
   }
 
   render() {
     return (
       <section className="chat-list">
-        {this.state.chats.map((el, i) => {
+        {this.props.chats.map((el, i) => {
           return (
             <ChatListEntry
               key={i}
@@ -84,7 +33,7 @@ export default class ChatList extends Component {
             />
           );
         })}
-        <FavouritesBar click={this.props.click} favourites={this.state.favourites}/>
+        <FavouritesBar click={this.props.click} favourites={this.props.chats}/>
       </section>
     );
   }

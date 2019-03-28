@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 import { FaAngleUp, FaStar } from "react-icons/fa";
 import FavouriteBarList from "./FavouriteBarList";
+import { Link } from "react-router-dom";
 
 export default class FavouritesBar extends Component {
   render() {
@@ -11,7 +12,9 @@ export default class FavouritesBar extends Component {
         <ul>
           <FavouriteBarList favourites={this.props.favourites} />
         </ul>
-          <FaAngleUp onClick={() => this.props.click("favs")} className="f-icon" color="#f6f7eb" size="3em" />
+        <Link to="/favourites">
+          <FaAngleUp className="f-icon" color="#f6f7eb" size="3em" />
+        </Link>
       </div>
     );
   }

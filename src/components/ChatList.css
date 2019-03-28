@@ -12,8 +12,12 @@
   border-radius: 10px;
 }
 
-.chatlist-entry .label-name {
+.chatlist-entry .label {
   margin: 3px;
+}
+
+.chatlist-entry .label.role {
+  font-size: 0.9em;
 }
 
 .chatlist-entry .labels {

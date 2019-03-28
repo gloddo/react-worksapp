@@ -12,7 +12,7 @@ export default class ChatList extends Component {
         {
           name: "pippo",
           surname: "sowlo",
-          role: "Woman Beater",
+          role: "Some Job",
           date: new Date(),
           notify: 100,
           img: "https://via.placeholder.com/58",
@@ -21,18 +21,27 @@ export default class ChatList extends Component {
         {
           name: "pippo",
           surname: "sowlo",
-          role: "Woman Beater",
+          role: "Some Job",
           date: new Date(),
-          notify: 100,
+          notify: 50,
           img: "https://via.placeholder.com/58",
           state: "busy"
         },
         {
           name: "pippo",
           surname: "sowlo",
-          role: "Woman Beater",
+          role: "Some Job",
           date: new Date(),
-          notify: 100,
+          notify: 1,
+          img: "https://via.placeholder.com/58",
+          state: "free"
+        },
+        {
+          name: "pippo",
+          surname: "sowlo",
+          role: "Some Job",
+          date: new Date(),
+          notify: 0,
           img: "https://via.placeholder.com/58",
           state: "free"
         }
@@ -61,7 +70,6 @@ export default class ChatList extends Component {
           return (
             <ChatListEntry
               key={i}
-              id={i}
               img={el.img}
               name={el.name}
               surname={el.surname}
@@ -70,13 +78,13 @@ export default class ChatList extends Component {
               notify={el.notify}
               state={el.state}
               selected={i === this.state.selected}
-              click={id => {
-                this.setState({ selected: id });
+              click={() => {
+                this.setState({ selected: i });
               }}
             />
           );
         })}
-        <FavouritesBar chats={this.state.chats}/>
+        <FavouritesBar favourites={this.state.favourites}/>
       </section>
     );
   }

@@ -12,9 +12,9 @@ export default class Message extends Component {
         <MessageText>{this.props.text}</MessageText>
         <span className="time-badge">
           {isToday(this.props.date) ? null : (
-            <Time date={this.props.date} type="date" />
+            <Time date={this.props.date} type="message-date" />
           )}
-          <Time date={this.props.date} type="time" />
+          <Time date={this.props.date} type="message-time" />
         </span>
       </article>
     );

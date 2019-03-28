@@ -8,32 +8,26 @@ class App extends Component {
   state = {
     page: "first"
   };
-  changePage(pageActive) {
+  changePage(pageActive) {  
     this.setState({
       page: pageActive
     });
   }
-  render() {
-    switch (this.state.page) {
-      case "first":
-        return (
-          <div>
-            <Navbar fn={page => this.changePage(page)} />
-            <ChatList />
-          </div>
-        );
-        break;
-      case "second":
-        return (
-          <div>
-            <Navbar />
-            <Chat />
-          </div>
-        );
-        break;
-      default:
-        return <Chat />;
+
+  pageSwitch = page => {
+    switch(page) {
+      case "first": return <ChatList />
+      case "second": return <Chat />
+      default: return <Chat />;
     }
+  }
+  render() {
+    return (
+    <div>
+      <Navbar fn={page => this.changePage(page)} />
+      { this.pageSwitch(this.state.page) }
+    </div>
+    )
   }
 }
 

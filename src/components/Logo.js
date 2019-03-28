@@ -6,9 +6,9 @@ import "./Logo.css";
 export default class Logo extends Component {
   render() {
     return (
-      <a href="#" className="logo-btn">
+      <div className="logo-btn">
         <img className="logo" src={logo} alt="logo" />
-      </a>
+      </div>
     );
   }
 }

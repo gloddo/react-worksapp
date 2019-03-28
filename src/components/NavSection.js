@@ -4,8 +4,12 @@ import PropTypes from "prop-types";
 export default class NavSection extends Component {
   render() {
     return (
-      <li>
-        <a onClick={() => this.props.fn("second")}>{this.props.children}</a>
+      <li
+        onClick={() => {
+          this.props.fn("first");
+        }}
+      >
+        {this.props.children}
       </li>
     );
   }

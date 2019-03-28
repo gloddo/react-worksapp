@@ -9,7 +9,7 @@ export default class FavouriteNavbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar no-tab">
+        <nav className="navbar">
           <ul>
             <NavSection fn={this.props.fn}>
               <FaHome className="n-icon" />

@@ -14,19 +14,18 @@ export default class ChatListEntry extends Component {
   // }
   render() {
     return (
-      <article 
-        onClick={() => this.props.click(this.props.id)}
-        id={this.props.id}
+      <article
+        onClick={this.props.click}
         className={
           this.props.selected ? "chatlist-entry selected" : "chatlist-entry"
         }
       >
-        <ProfilePic img={this.props.img} state={this.props.state} />
+        <ProfilePic img={this.props.img} state={this.props.state} ball={true} />
         <Label
           name={this.props.name}
           surname={this.props.surname}
           role={this.props.role}
-          class="label-name"
+          class="name"
         />
         <div className="badges">
           <Time type="time" date={this.props.date} />

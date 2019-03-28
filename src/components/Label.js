@@ -6,13 +6,13 @@ export default class Label extends Component {
     return (
       <div className="labels">
         <div>
-          <div className={this.props.class}>
+          <div className={"label " + this.props.class}>
             {this.props.name} {this.props.surname}
           </div>
         </div>
         {this.props.role ? (
           <div>
-            <div className={this.props.class}>{this.props.role}</div>
+            <div className={"label role"}>{this.props.role}</div>
           </div>
         ) : null}
       </div>

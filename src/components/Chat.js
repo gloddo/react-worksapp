@@ -29,32 +29,21 @@ export default class Chat extends Component {
     };
   }
 
-  input = event => {
-    if (event.which === 13) {
-      var temp = [];
-      this.state.messages.forEach(el => {
-        el.seen = true;
-        temp.push(el);
-      });
-      this.setState({
-        messages: temp.concat({
-          text: event.target.value,
-          sent: true,
-          date: new Date()
-        }),
-        inputValue: ""
-      });
-    } else if (event.which === 110) {
-      this.setState({
-        messages: this.state.messages.concat({
-          text: event.target.value,
-          sent: false,
-          date: new Date()
-        }),
-        inputValue: ""
-      });
-    }
-  }
+  send = () => {
+    var temp = [];
+    this.state.messages.forEach(el => {
+      el.seen = true;
+      temp.push(el);
+    });
+    this.setState({
+      messages: temp.concat({
+        text: this.state.inputValue,
+        sent: true,
+        date: new Date()
+      }),
+      inputValue: ""
+    });
+  };
 
   render() {
     return (
@@ -63,11 +52,13 @@ export default class Chat extends Component {
         <div className="text-input">
           <Input
             type="chat-input"
+            id="chat-input"
             value={this.state.inputValue}
             change={event => this.setState({ inputValue: event.target.value })}
-            enter={this.input}
+            send={this.send}
             placeholder="Write here your message"
           />
+          <button className="send-btn" onClick={this.send}>Invia</button>
         </div>
       </section>
     );

@@ -6,7 +6,7 @@ export default class NavSection extends Component {
     return (
       <li
         onClick={() => {
-          this.props.fn("first");
+          this.props.fn("second");
         }}
       >
         {this.props.children}

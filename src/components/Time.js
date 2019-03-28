@@ -8,8 +8,8 @@ export default class Time extends Component {
     let dateFormat;
     if (this.props.type.includes("date")) { 
       if (isThisYear(this.props.date)) {
-        dateFormat = "DD/MM";
-      } else dateFormat = "DD/MM/YYYY";
+        dateFormat = "MMM Do";
+      } else dateFormat = "MMM Do YYYY";
     } else if (this.props.type.includes("time")) {
       dateFormat = "HH:mm";
     }

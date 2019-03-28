@@ -1,54 +1,33 @@
 import React, { Component } from "react";
 import "./App.css";
-
-import ChatListEntry from "./components/ChatListEntry";
-import FavouriteNavbar from "./components/FavouriteNavbar"
+import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
+import Navbar from "./components/Navbar";
 
-
-
-var array = [
-  {
-    name: "pippo",
-    surname: "sowlo",
-    role: "Woman Beater",
-    date: new Date(),
-    notify: 100,
-    img: "https://via.placeholder.com/75",
-    state: 'red'
-    
-  },
-  {
-    name: "pippo",
-    surname: "sowlo",
-    role: "Woman Beater",
-    date: new Date(),
-    notify: 100,
-    img: "https://via.placeholder.com/75",
-    state: 'red'
-    
-  },
-  {
-    name: "pippo",
-    surname: "sowlo",
-    role: "Woman Beater",
-    date: new Date(),
-    notify: 100,
-    img: "https://via.placeholder.com/75",
-    state: 'red'
-    
-  }
-]
 class App extends Component {
+  state = {
+    page: "first"
+  };
+  changePage(pageActive) {  
+    this.setState({
+      page: pageActive
+    });
+  }
+
+  pageSwitch = page => {
+    switch(page) {
+      case "first": return <ChatList />
+      case "second": return <Chat />
+      default: return <Chat />;
+    }
+  }
   render() {
     return (
-      <div>
-        <ChatList chats={array}/>
-        <FavouriteNavbar chats={array}/>
-
-      </div>
-
-    );
+    <div>
+      <Navbar fn={page => this.changePage(page)} />
+      { this.pageSwitch(this.state.page) }
+    </div>
+    )
   }
 }
 

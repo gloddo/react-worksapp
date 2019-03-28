@@ -3,6 +3,8 @@
   justify-content: space-between;
   padding: 5px 14px;
   align-items: center;
+  width: 97vw;
+  margin:auto;
 }
 
 .message {
@@ -104,6 +106,11 @@
 }
 
 .chat {
-    width: 97vw;
+    width: 100vw;
   margin: auto;
 }
+
+.unseen {
+    background-color: #f6f7eb;
+}
+

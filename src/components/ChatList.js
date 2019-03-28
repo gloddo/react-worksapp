@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ChatListEntry from "./ChatListEntry";
 import "./ChatList.css";
-
-
+import FavouritesBar from "./FavouritesBar";
 
 export default class ChatList extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ export default class ChatList extends Component {
           date: new Date(),
           notify: 100,
           img: "https://via.placeholder.com/58",
-          state: 'busy',
+          state: "busy"
         },
         {
           name: "pippo",
@@ -26,7 +25,7 @@ export default class ChatList extends Component {
           date: new Date(),
           notify: 100,
           img: "https://via.placeholder.com/58",
-          state: 'busy',
+          state: "busy"
         },
         {
           name: "pippo",
@@ -35,31 +34,50 @@ export default class ChatList extends Component {
           date: new Date(),
           notify: 100,
           img: "https://via.placeholder.com/58",
-          state: 'free',
+          state: "free"
+        }
+      ],
+      favourites: [
+        {
+          img: "https://via.placeholder.com/58",
+          state: "busy"
+        },
+        {
+          img: "https://via.placeholder.com/58",
+          state: "busy"
+        },
+        {
+          img: "https://via.placeholder.com/58",
+          state: "free"
         }
       ]
     };
   }
-  
+
   render() {
-    return this.state.chats.map((el, i) => {
-      return (
-        <ChatListEntry
-          key={i}
-          id={i}
-          img={el.img}
-          name={el.name}
-          surname={el.surname}
-          role={el.role}
-          date={el.date}
-          notify={el.notify}
-          state={el.state}
-          selected={i===this.state.selected}
-          click={id => {
-            this.setState({selected: id})}
-          }
-        />
-      );
-    });
+    return (
+      <section>
+        {this.state.chats.map((el, i) => {
+          return (
+            <ChatListEntry
+              key={i}
+              id={i}
+              img={el.img}
+              name={el.name}
+              surname={el.surname}
+              role={el.role}
+              date={el.date}
+              notify={el.notify}
+              state={el.state}
+              selected={i === this.state.selected}
+              click={id => {
+                this.setState({ selected: id });
+              }}
+            />
+          );
+        })}
+        <FavouritesBar chats={this.state.chats}/>
+      </section>
+    );
   }
 }

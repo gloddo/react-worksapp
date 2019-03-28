@@ -6,11 +6,11 @@ export default class ProfilePic extends Component {
     return (
       <picture>
         <img
-          className={this.props.state+" profile-pic"}
+          className={this.props.state + " profile-pic"}
           src={this.props.img || "img/placeholder"}
           alt="pic"
         />
-        <div className={this.props.state} />
+        <div className={this.props.ball && this.props.state} />
       </picture>
     );
   }

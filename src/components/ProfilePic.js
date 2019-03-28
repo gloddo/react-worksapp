@@ -11,7 +11,12 @@ export default class ProfilePic extends Component {
   render() {
     return (
       <picture>
-        {this.state.modalOn && <Modal img={this.props.img} />}
+        {this.state.modalOn && (
+          <Modal
+            onClick={() => this.setState({ modalOn: false })}
+            img={this.props.img}
+          />
+        )}
         <img
           onClick={
             this.props.modal ? () => this.setState({ modalOn: true }) : null

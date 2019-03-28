@@ -22,7 +22,7 @@ export default class ChatListEntry extends Component {
       >
         <ProfilePic
           img={this.props.img}
-          modal={false}
+          modal={true}
           state={this.props.state}
           ball={true}
         />

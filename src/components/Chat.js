@@ -57,7 +57,7 @@ export default class Chat extends Component {
         <Messages messages={this.state.messages} />
         <form className="text-input" onSubmit={this.send}>
           <Input
-            type="chat-input"
+            class="chat-input"
             id="chat-input"
             value={this.state.inputValue}
             change={event => this.setState({ inputValue: event.target.value })}

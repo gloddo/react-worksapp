@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ProfilePopUp from "./ProfilePopUp";
 import Modal from "./Modal";
 
 export default class ProfilePic extends Component {
@@ -11,10 +10,17 @@ export default class ProfilePic extends Component {
   render() {
     return (
       <picture>
-        {this.state.modalOn && <Modal img={this.props.img} />}
+        {this.state.modalOn && (
+          <Modal
+            onClick={() => this.setState({ modalOn: false })}
+            img={this.props.img}
+          />
+        )}
         <img
           onClick={
-            this.props.modal ? () => this.setState({ modalOn: true }) : null
+            this.props.modal
+              ? () => this.setState({ modalOn: true })
+              : undefined
           }
           className={this.props.state + " profile-pic"}
           src={this.props.img || "img/placeholder"}
@@ -28,5 +34,7 @@ export default class ProfilePic extends Component {
 
 ProfilePic.propTypes = {
   img: PropTypes.string,
-  state: PropTypes.string
+  state: PropTypes.string,
+  modal: PropTypes.bool,
+  ball: PropTypes.bool
 };

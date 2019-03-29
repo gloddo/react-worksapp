@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import NavSection from "./NavSection";
 import "./Logo.css";
 
-export default class FavouriteNavbar extends Component {
+export default class Navbar extends Component {
   render() {
     return (
       <div>
@@ -32,3 +32,6 @@ export default class FavouriteNavbar extends Component {
     );
   }
 }
+Navbar.propTypes = {
+  fn: PropTypes.func
+};

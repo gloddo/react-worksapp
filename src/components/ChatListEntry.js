@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import ProfilePic from "./ProfilePic";
 import Label from "./Label";
 import NotifyBadge from "./NotifyBadge";
@@ -22,7 +22,7 @@ export default class ChatListEntry extends Component {
       >
         <ProfilePic
           img={this.props.img}
-          modal={false}
+          modal={true}
           state={this.props.state}
           ball={true}
         />
@@ -32,11 +32,18 @@ export default class ChatListEntry extends Component {
           role={this.props.role}
           class="name"
         />
-        <div className="badges">
-          <Time type="time" date={this.props.date} />
-          <NotifyBadge notify={this.props.notify} />
-        </div>
+        {this.props.date && (
+          <div className="badges">
+            <Time type="time" date={this.props.date} />
+            <NotifyBadge notify={this.props.notify} />
+          </div>
+        )}
       </article>
     );
   }
 }
+ChatListEntry.propTypes = {
+  click: PropTypes.func,
+  img: PropTypes.string,
+  selected: PropTypes.bool
+};

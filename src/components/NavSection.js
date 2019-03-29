@@ -14,3 +14,6 @@ export default class NavSection extends Component {
     );
   }
 }
+NavSection.propTypes = {
+  fn: PropTypes.func
+};

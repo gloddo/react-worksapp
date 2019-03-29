@@ -19,3 +19,7 @@ export default class FavouritesBar extends Component {
     );
   }
 }
+
+FavouritesBar.propTypes = {
+  favourites: PropTypes.array
+};

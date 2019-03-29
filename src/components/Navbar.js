@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { FaHome, FaSearch, FaPlus, FaBars } from "react-icons/fa";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";

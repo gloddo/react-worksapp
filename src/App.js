@@ -4,8 +4,7 @@ import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
 import Favourites from "./components/Favourites";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -57,36 +56,17 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <Navbar />
         <Route
-          render={({ location }) => (
-            <div>
-              <Navbar />
-              <TransitionGroup>
-                <CSSTransition
-                  key={location.key}
-                  classNames="slide"
-                  timeout={300}
-                >
-                  <Switch location={location}>
-                    <Route
-                      path="/"
-                      exact
-                      render={() => <ChatList chats={this.state.chats} />}
-                    />
-                    <Route path="/chat/:id" exact component={Chat} />
-                    <Route
-                      path="/favourites"
-                      exact
-                      render={() => (
-                        <Favourites favourites={this.state.chats} />
-                      )}
-                    />
-                    <Route render={() => <div>Not Found</div>} />
-                  </Switch>
-                </CSSTransition>
-              </TransitionGroup>
-            </div>
-          )}
+          path="/"
+          exact
+          render={() => <ChatList chats={this.state.chats} />}
+        />
+        <Route path="/chat/:id" exact component={Chat} />
+        <Route
+          path="/favourites"
+          exact
+          render={() => <Favourites favourites={this.state.chats} />}
         />
       </Router>
     );

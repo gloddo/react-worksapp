@@ -9,7 +9,6 @@ export default class Favourites extends Component {
       selected: ""
     };
   }
-
   render() {
     return (
       <section className="favourites">

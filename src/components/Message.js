@@ -23,5 +23,5 @@ export default class Message extends Component {
 }
 
 Message.propTypes = {
-  sent: PropTypes.string
+  sent: PropTypes.bool
 };

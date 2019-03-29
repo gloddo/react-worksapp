@@ -11,7 +11,7 @@ export default class ChatListEntry extends Component {
       <article
         onClick={this.props.click}
         className={
-          (this.props.selected ? "chatlist-entry selected " : "chatlist-entry ") + (this.props.notify && "unread")
+          (this.props.selected ? "chatlist-entry selected" : "chatlist-entry") + (this.props.notify ? " unread" : "")
         }
       >
         <ProfilePic

@@ -15,7 +15,7 @@ export default class FavouritesBar extends Component {
         <Link to="/favourites">
           <FaAngleUp className="f-icon" color="#f6f7eb" size="3em" />
         </Link>
-      </div>
+      </div> 
     );
   }
 }

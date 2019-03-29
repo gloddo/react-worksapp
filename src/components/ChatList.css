@@ -108,3 +108,8 @@
 .notify-wrap {
   margin-top: 3px;
 }
+
+.badges time {
+  display: block;
+  margin-bottom: 3px;
+}

@@ -11,6 +11,7 @@ import NewChat from "./components/NewChat";
 class App extends Component {
   state = {
     page: "home",
+    statusFree: true,
     role:['ciao','miao','Some Job'],
     chats: [
       {
@@ -59,7 +60,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar status={this.state.statusFree} click={()=>this.setState({statusFree: !this.state.statusFree})} />
         <Switch>
           <Route
             path="/"

@@ -1,20 +1,17 @@
 import React, { Component } from "react";
-import ChatListEntry from "./ChatListEntry";
-import "./ChatList.css";
-import FavouritesBar from "./FavouritesBar";
-import NewChat from "./NewChat";
+import FavouritesEntry from "./FavouritesEntry";
+import "./Favourites.css";
 
-export default class ChatList extends Component {
+export default class Favourites extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: "",
-      role: ["miao", "ciao", "Some Job"],
       chats: [
         {
           name: "pippo",
-          surname: "1",
-          role: "miao",
+          surname: "sowlo",
+          role: "Some Job",
           date: new Date(),
           notify: 100,
           img: "https://via.placeholder.com/58",
@@ -22,7 +19,7 @@ export default class ChatList extends Component {
         },
         {
           name: "pippo",
-          surname: "2",
+          surname: "sowlo",
           role: "Some Job",
           date: new Date(),
           notify: 50,
@@ -31,8 +28,8 @@ export default class ChatList extends Component {
         },
         {
           name: "pippo",
-          surname: "3",
-          role: "ciao",
+          surname: "sowlo",
+          role: "Some Job",
           date: new Date(),
           notify: 1,
           img: "https://via.placeholder.com/58",
@@ -40,24 +37,10 @@ export default class ChatList extends Component {
         },
         {
           name: "pippo",
-          surname: "4",
+          surname: "sowlo",
           role: "Some Job",
           date: new Date(),
           notify: 0,
-          img: "https://via.placeholder.com/58",
-          state: "free"
-        }
-      ],
-      favourites: [
-        {
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
-          img: "https://via.placeholder.com/58",
-          state: "busy"
-        },
-        {
           img: "https://via.placeholder.com/58",
           state: "free"
         }
@@ -67,28 +50,23 @@ export default class ChatList extends Component {
 
   render() {
     return (
-      <section className="chat-list">
+      <section className="favourites">
         {this.state.chats.map((el, i) => {
           return (
-            <ChatListEntry
+            <FavouritesEntry
               key={i}
               img={el.img}
               name={el.name}
               surname={el.surname}
-              role={el.role}
-              date={el.date}
               notify={el.notify}
+              role={el.role}
               state={el.state}
-              selected={i === this.state.selected}
               click={() => {
-                this.setState({ selected: i });
+                // TODO
               }}
             />
           );
         })}
-
-        <NewChat chats={this.state.chats} role={this.state.role} />
-        <FavouritesBar favourites={this.state.favourites} />
       </section>
     );
   }

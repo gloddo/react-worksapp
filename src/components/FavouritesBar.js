@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { FaAngleUp, FaStar } from "react-icons/fa";
 import FavouriteBarList from "./FavouriteBarList";
 import { Link } from "react-router-dom";
@@ -19,3 +19,7 @@ export default class FavouritesBar extends Component {
     );
   }
 }
+
+FavouritesBar.propTypes = {
+  favourites: PropTypes.array
+};

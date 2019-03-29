@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { FaHome, FaSearch, FaPlus, FaBars } from "react-icons/fa";
 import Logo from "./Logo";
-import NavSection from "./NavSection";
+import { Link } from "react-router-dom";
 import "./Logo.css";
 
 export default class Navbar extends Component {
@@ -11,21 +11,21 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbar">
           <ul>
-            <NavSection click={() => this.props.click("home")}>
+            <Link to="/">
               <FaHome className="n-icon" />
-            </NavSection>
-            <NavSection click={() => this.props.click("search")}>
+            </Link>
+            <Link to="/search">
               <FaSearch className="n-icon" />
-            </NavSection>
-            <NavSection click={() => {}}>
+            </Link>
+            <Link to="/">
               <Logo />
-            </NavSection>
-            <NavSection click={() => this.props.click("newChat")}>
+            </Link>
+            <Link to="/new-chat">
               <FaPlus className="n-icon" />
-            </NavSection>
-            <NavSection click={() => this.props.click("menu")}>
+            </Link>
+            <Link to="/menu">
               <FaBars className="n-icon" />
-            </NavSection>
+            </Link>
           </ul>
         </nav>
       </div>

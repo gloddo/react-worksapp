@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ProfilePopUp from "./ProfilePopUp";
 import Modal from "./Modal";
 
 export default class ProfilePic extends Component {
@@ -35,5 +34,7 @@ export default class ProfilePic extends Component {
 
 ProfilePic.propTypes = {
   img: PropTypes.string,
-  state: PropTypes.string
+  state: PropTypes.string,
+  modal: PropTypes.bool,
+  ball: PropTypes.bool
 };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import ProfilePic from "./ProfilePic";
 import Label from "./Label";
 import NotifyBadge from "./NotifyBadge";
@@ -42,3 +42,8 @@ export default class ChatListEntry extends Component {
     );
   }
 }
+ChatListEntry.propTypes = {
+  click: PropTypes.func,
+  img: PropTypes.string,
+  selected: PropTypes.bool
+};

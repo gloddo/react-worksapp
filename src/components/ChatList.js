@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import ChatListEntry from "./ChatListEntry";
 import "./ChatList.css";
 import FavouritesBar from "./FavouritesBar";
+import { Link } from "react-router-dom";
 
 export default class ChatList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: "",
-      
+      selected: ""
     };
   }
 
@@ -17,23 +17,25 @@ export default class ChatList extends Component {
       <section className="chat-list">
         {this.props.chats.map((el, i) => {
           return (
-            <ChatListEntry
-              key={i}
-              img={el.img}
-              name={el.name}
-              surname={el.surname}
-              role={el.role}
-              date={el.date}
-              notify={el.notify}
-              state={el.state}
-              selected={i === this.state.selected}
-              click={() => {
-                this.setState({ selected: i });
-              }}
-            />
+            <Link key={i} className="plain-text" to={`/chat/${i}`}>
+              <ChatListEntry
+                key={i}
+                img={el.img}
+                name={el.name}
+                surname={el.surname}
+                role={el.role}
+                date={el.date}
+                notify={el.notify}
+                state={el.state}
+                selected={i === this.state.selected}
+                click={() => {
+                  this.setState({ selected: i });
+                }}
+              />
+            </Link>
           );
         })}
-        <FavouritesBar click={this.props.click} favourites={this.props.chats}/>
+        <FavouritesBar click={this.props.click} favourites={this.props.chats} />
       </section>
     );
   }

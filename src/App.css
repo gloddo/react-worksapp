@@ -31,6 +31,12 @@
     transform: rotate(360deg);
   }
 }
+
+.unread {
+  font-weight: bold;
+  background-color: #f6f7eb;
+}
+
 /* 
 .slide-enter {
   transform: translate(100%);

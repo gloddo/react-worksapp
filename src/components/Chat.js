@@ -55,7 +55,7 @@ export default class Chat extends Component {
     return (
       <section className="chat">
         <Messages messages={this.state.messages} />
-        <form className="text-input" onSubmit={this.send}>
+        <form autoComplete="off" className="text-input" onSubmit={this.send}>
           <Input
             class="chat-input"
             id="chat-input"

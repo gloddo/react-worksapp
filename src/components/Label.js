@@ -5,15 +5,11 @@ export default class Label extends Component {
   render() {
     return (
       <div className="labels">
-        <div>
-          <div className={"label " + this.props.class}>
-            {this.props.name} {this.props.surname}
-          </div>
+        <div className={"label " + this.props.class}>
+          {this.props.name} {this.props.surname}
         </div>
         {this.props.role ? (
-          <div>
-            <div className={"label role"}>{this.props.role}</div>
-          </div>
+          <div className={"label role"}>{this.props.role}</div>
         ) : null}
       </div>
     );

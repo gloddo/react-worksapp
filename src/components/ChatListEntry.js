@@ -6,18 +6,12 @@ import NotifyBadge from "./NotifyBadge";
 import Time from "./Time";
 
 export default class ChatListEntry extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     selected: this.props.selected
-  //   };
-  // }
   render() {
     return (
       <article
         onClick={this.props.click}
         className={
-          this.props.selected ? "chatlist-entry selected" : "chatlist-entry"
+          (this.props.selected ? "chatlist-entry selected " : "chatlist-entry ") + (this.props.notify && "unread")
         }
       >
         <ProfilePic
@@ -34,7 +28,9 @@ export default class ChatListEntry extends Component {
         />
         <div className="badges">
           <Time type="time" date={this.props.date} />
-          <NotifyBadge notify={this.props.notify} />
+          <div className="notify-wrap">
+            <NotifyBadge notify={this.props.notify} />
+          </div>
         </div>
       </article>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Message from "./Message";
+import PropTypes from "prop-types";
 
 export default class Messages extends Component {
   render() {
@@ -18,3 +19,7 @@ export default class Messages extends Component {
     });
   }
 }
+
+Messages.propTypes = {
+  messages: PropTypes.array
+};

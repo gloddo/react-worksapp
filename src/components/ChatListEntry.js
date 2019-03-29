@@ -32,10 +32,12 @@ export default class ChatListEntry extends Component {
           role={this.props.role}
           class="name"
         />
-        <div className="badges">
-          <Time type="time" date={this.props.date} />
-          <NotifyBadge notify={this.props.notify} />
-        </div>
+        {this.props.date && (
+          <div className="badges">
+            <Time type="time" date={this.props.date} />
+            <NotifyBadge notify={this.props.notify} />
+          </div>
+        )}
       </article>
     );
   }

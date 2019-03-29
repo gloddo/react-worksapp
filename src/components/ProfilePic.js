@@ -19,7 +19,9 @@ export default class ProfilePic extends Component {
         )}
         <img
           onClick={
-            this.props.modal ? () => this.setState({ modalOn: true }) : null
+            this.props.modal
+              ? () => this.setState({ modalOn: true })
+              : undefined
           }
           className={this.props.state + " profile-pic"}
           src={this.props.img || "img/placeholder"}

@@ -2,17 +2,19 @@ import React, { Component } from "react";
 import ChatListEntry from "./ChatListEntry";
 import "./ChatList.css";
 import FavouritesBar from "./FavouritesBar";
+import NewChat from "./NewChat";
 
 export default class ChatList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: "",
+      role: ["miao", "ciao", "Some Job"],
       chats: [
         {
           name: "pippo",
-          surname: "sowlo",
-          role: "Some Job",
+          surname: "1",
+          role: "miao",
           date: new Date(),
           notify: 100,
           img: "https://via.placeholder.com/58",
@@ -20,7 +22,7 @@ export default class ChatList extends Component {
         },
         {
           name: "pippo",
-          surname: "sowlo",
+          surname: "2",
           role: "Some Job",
           date: new Date(),
           notify: 50,
@@ -29,8 +31,8 @@ export default class ChatList extends Component {
         },
         {
           name: "pippo",
-          surname: "sowlo",
-          role: "Some Job",
+          surname: "3",
+          role: "ciao",
           date: new Date(),
           notify: 1,
           img: "https://via.placeholder.com/58",
@@ -38,7 +40,7 @@ export default class ChatList extends Component {
         },
         {
           name: "pippo",
-          surname: "sowlo",
+          surname: "4",
           role: "Some Job",
           date: new Date(),
           notify: 0,
@@ -84,7 +86,8 @@ export default class ChatList extends Component {
             />
           );
         })}
-        <FavouritesBar favourites={this.state.favourites}/>
+        <NewChat chats={this.state.chats} role={this.state.role} />
+        <FavouritesBar favourites={this.state.favourites} />
       </section>
     );
   }

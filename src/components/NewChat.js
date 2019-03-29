@@ -1,22 +1,36 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Label from "./Label";
+// import Label from "./Label";
+// import ProfilePic from "./ProfilePic";
+import ChatListEntry from "./ChatListEntry";
 export default class NewChat extends Component {
   render() {
-    return this.props.chats.map((el, i) => (
+    return this.props.role.map((el, i) => (
       <div>
-        {el.role}
+        {el}
         {this.props.chats.map((e, i) => (
-          <div>
-            {el.role == e.role && (
-              <Label
+          <article>
+            {el == e.role && (
+              // <div>
+              //   <ProfilePic img={e.img} modal={true} state={e.state} />
+              //   <Label
+              //     name={e.name}
+              //     surname={e.surname}
+              //     role={undefined}
+              //     className="name"
+              //   />
+              // </div>
+              <ChatListEntry
+                img={e.img}
+                modal={true}
+                state={e.state}
                 name={e.name}
                 surname={e.surname}
-                role={e.role}
-                class="name"
+                role={undefined}
+                className="name"
               />
             )}
-          </div>
+          </article>
         ))}
       </div>
     ));

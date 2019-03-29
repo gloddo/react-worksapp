@@ -3,7 +3,6 @@ import "./App.css";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
-
 class App extends Component {
   state = {
     page: "first"

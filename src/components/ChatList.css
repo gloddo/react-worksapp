@@ -35,7 +35,6 @@
 .chatlist-entry picture {
 	height: 58px;
   margin: 5px;
-  position: relative;
 }
 
 .selected {
@@ -52,27 +51,6 @@
   border: 3px solid  #0fa3b1;
 }
 
-div.free {
-  width: 15px;
-  height: 15px;
-  background-color: #0fa3b1;
-  border-radius: 50%;
-  z-index: 2;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-div.busy {
-  width: 15px;
-  height: 15px;
-  background-color: #e94f37;
-  border-radius: 50%;
-  z-index: 2;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
 
 .notify-badge {
   border: 3px solid #0fa3b1;

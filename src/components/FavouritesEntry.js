@@ -9,7 +9,7 @@ export default class FavouritesEntry extends Component {
     return (
       <article className={`favourite-entry ${this.props.notify && "unread" }`}>
         <div className="foto-notification">
-          <ProfilePic img={this.props.img} state={this.props.state} />
+          <ProfilePic img={this.props.img} state={this.props.state} ball={true} />
           <div className="favs-notify">
             <NotifyBadge notify={this.props.notify} />
           </div>

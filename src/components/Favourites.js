@@ -14,27 +14,29 @@ export default class Favourites extends Component {
   render() {
     return (
       <section className="favourites">
-        {this.props.favourites.map((el, i) => {
-          if (el.favs) {
-            return (
-              <Link key={i} className="plain-text" to={`/chat/${i}`}>
-                <FavouritesEntry
-                  key={i}
-                  img={el.img}
-                  name={el.name}
-                  surname={el.surname}
-                  notify={el.notify}
-                  role={el.role}
-                  state={el.state}
-                  click={() => {
-                    // TODO
-                  }}
-                />
-              </Link>
-            );
-          }
-          return null;
-        })}
+        <div className="entries">
+          {this.props.favourites.map((el, i) => {
+            if (el.favs) {
+              return (
+                <Link key={i} className="plain-text" to={`/chat/${i}`}>
+                  <FavouritesEntry
+                    key={i}
+                    img={el.img}
+                    name={el.name}
+                    surname={el.surname}
+                    notify={el.notify}
+                    role={el.role}
+                    state={el.state}
+                    click={() => {
+                      // TODO
+                    }}
+                  />
+                </Link>
+              );
+            }
+            return null;
+          })}
+        </div>
       </section>
     );
   }

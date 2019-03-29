@@ -8,24 +8,28 @@
 
 .favourite-entry {
     display: flex;
-    width: 45vw;
+    width: 46vw;
     height: 130px;
     flex-direction: column;
-    margin-top: 5px;
     border: 1px solid gray;
     border-radius: 15px;
+    margin-top: 5px;
 }
 
 .favourites {
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
     width: 100vw;
-    margin: auto;
+    justify-content: center;
     position: absolute;
     top: 64px;
     overflow-y: auto;
     max-height: 82vh;
+}
+
+.favourites .entries {
+    display: flex;
+    flex-wrap: wrap;
+    width: 92vW;
 }
 
 .favourite-entry picture img {
@@ -44,4 +48,8 @@
     flex-grow: 1;
     display: flex;
     justify-content: center;
+}
+
+.favourites div.free, .favourites div.busy {
+  bottom: 5px;
 }

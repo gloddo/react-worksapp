@@ -3,9 +3,11 @@ import "./App.css";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
+import Favourites from "./components/Favourites"
+
 class App extends Component {
   state = {
-    page: "first"
+    page: "home"
   };
   changePage(pageActive) {
     this.setState({
@@ -14,24 +16,22 @@ class App extends Component {
   }
 
   pageSwitch = page => {
-    switch (page) {
-      case "first":
-        return <ChatList />;
-      case "second":
-        return <Chat />;
-      default:
-        return <Chat />;
+    switch(page) {
+      case "home": return <ChatList click={page => this.changePage(page)}/>
+      case "chat": return <Chat />
+      case "favs": return <Favourites click={page => this.changePage(page)}/>
+      default: return <ChatList click={page => this.changePage(page)}/>;
     }
-  };
-
+  }
+  
   render() {
     return (
-      <div>
-        <Navbar fn={page => this.changePage(page)} />
+    <div>
+      <Navbar click={page => this.changePage(page)} />
+      { this.pageSwitch(this.state.page) }
+    </div>
+    )
 
-        {this.pageSwitch(this.state.page)}
-      </div>
-    );
   }
 }
 

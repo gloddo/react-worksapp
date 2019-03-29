@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChatListEntry from "./ChatListEntry";
+import PropTypes from "prop-types";
 import "./ChatList.css";
 import FavouritesBar from "./FavouritesBar";
 import NewChat from "./NewChat";
@@ -38,9 +39,13 @@ export default class ChatList extends Component {
           );
         })}
 
-        <NewChat chats={this.state.chats} role={this.state.role} />
-        <FavouritesBar favourites={this.state.favourites} />
+        <NewChat chats={this.props.chats} role={this.props.role} />
+        <FavouritesBar favourites={this.props.chats} />
       </section>
     );
   }
 }
+NewChat.propTypes = {
+  role: PropTypes.array,
+  chats: PropTypes.array
+};

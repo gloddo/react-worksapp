@@ -9,11 +9,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 class App extends Component {
   state = {
     page: "home",
+    role:['ciao','miao','Some Job'],
     chats: [
       {
         name: "pippo",
         surname: "sowlo",
-        role: "Some Job",
+        role: "ciao",
         date: new Date(),
         notify: 100,
         img: "https://via.placeholder.com/58",
@@ -33,7 +34,7 @@ class App extends Component {
       {
         name: "pippo",
         surname: "sowlo",
-        role: "Some Job",
+        role: "miao",
         date: new Date(),
         notify: 1,
         img: "https://via.placeholder.com/58",
@@ -60,7 +61,7 @@ class App extends Component {
         <Route
           path="/"
           exact
-          render={() => <ChatList chats={this.state.chats} />}
+          render={() => <ChatList role={this.state.role} chats={this.state.chats} />}
         />
         <Route path="/chat/:id" exact component={Chat} />
         <Route

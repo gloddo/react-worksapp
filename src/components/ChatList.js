@@ -28,9 +28,6 @@ export default class ChatList extends Component {
               notify={el.notify}
               state={el.state}
               selected={i === this.state.selected}
-              click={() => {
-                this.setState({ selected: i });
-              }}
             />
           );
         })}

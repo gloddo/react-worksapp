@@ -33,7 +33,7 @@ export default class FavouritesEntry extends Component {
             name={this.props.name}
             surname={this.props.surname}
             role={this.props.role}
-            class="name"
+            type="name"
           />
         </Link>
       </article>

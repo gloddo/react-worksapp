@@ -5,7 +5,7 @@ export default class Input extends Component {
   render() {
     return (
       <input
-        className={this.props.class}
+        className={this.props.className}
         id={this.props.id}
         type={this.props.type}
         onChange={e => this.props.change(e)}

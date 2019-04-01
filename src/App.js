@@ -5,6 +5,7 @@ import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
 import Favourites from "./components/Favourites";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./components/Login";
 
 class App extends Component {
   state = {
@@ -63,7 +64,9 @@ class App extends Component {
           path="/"
           exact
           render={() => (
-            <ChatList role={this.state.role} chats={this.state.chats} />
+            <div>
+              <ChatList role={this.state.role} chats={this.state.chats} />
+            </div>
           )}
         />
         <Route path="/chat/:id" exact component={Chat} />

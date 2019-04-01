@@ -13,6 +13,7 @@ class App extends Component {
     page: "home",
     menu: false,
     statusFree: true,
+    username: "Tester",
     profileImg: "https://via.placeholder.com/58",
     role: ["ciao", "miao", "Some Job"],
     chats: [
@@ -67,6 +68,7 @@ class App extends Component {
           isOpen={this.state.menu}
           img={this.state.profileImg}
           closeMenu={() => this.setState({ menu: !this.state.menu })}
+          username={this.state.username}
         />
         <Navbar
           status={this.state.statusFree}

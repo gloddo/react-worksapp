@@ -11,4 +11,52 @@
     flex-direction: column;
     position: fixed;
     right: 0;
+    align-items: flex-end
+}
+
+.side-menu .links, .side-menu .links > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around
+}
+
+.side-menu .links {
+    height: 70vh;
+    margin-right: 30px;
+    text-align: right;
+}
+
+.side-menu .n-icon {
+    align-self: flex-start
+}
+
+.side-menu a {
+    text-decoration: none;
+    font-size: 1.3em;
+    line-height: 2em;
+}
+
+.side-menu img {
+    padding: 5px;
+    border: 2px black solid;
+    border-radius: 10px;
+    height: 150px;
+    width: 150px;
+}
+
+.side-menu picture {
+    width: 150px;
+    margin-right: 30px
+}
+
+.username {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.outer-click {
+    width: 20vw;
+    position: fixed;
+    left: 0;
+    height: 100vh;
 }

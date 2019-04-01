@@ -74,7 +74,7 @@ class App extends Component {
             render={() => <Favourites favourites={this.state.chats} />}
           />
           <Route path="/new-chat" exact render={() => <NewChat chats={this.state.chats} role={this.state.role} />}/>
-        
+
         </Switch>
       </div>
     );

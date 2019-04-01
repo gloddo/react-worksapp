@@ -30,7 +30,6 @@ export default class ChatListEntry extends Component {
             name={this.props.name}
             surname={this.props.surname}
             role={this.props.role}
-            type="name"
           />
           {this.props.date && (
             <div className="badges">

@@ -5,7 +5,7 @@ export default class Label extends Component {
   render() {
     return (
       <div className="labels">
-        <div className={"label " + this.props.class}>
+        <div className={"label " + this.props.type}>
           {this.props.name} {this.props.surname}
         </div>
         {this.props.role ? (

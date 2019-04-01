@@ -4,13 +4,15 @@ import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
 import Favourites from "./components/Favourites";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Login from "./components/Login";
+import { Route, Switch } from "react-router-dom";
+
+import NewChat from "./components/NewChat";
 
 class App extends Component {
   state = {
     page: "home",
-    role: ["ciao", "miao", "Some Job"],
+    statusFree: true,
+    role:['ciao','miao','Some Job'],
     chats: [
       {
         name: "pippo",
@@ -57,25 +59,24 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Navbar />
+      <div>
+        <Navbar status={this.state.statusFree} click={()=>this.setState({statusFree: !this.state.statusFree})} />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => <ChatList role={this.state.role} chats={this.state.chats} />}
+          />
+          <Route path="/chat/:id" exact component={Chat} />
+          <Route
+            path="/favourites"
+            exact
+            render={() => <Favourites favourites={this.state.chats} />}
+          />
+          <Route path="/new-chat" exact render={() => <NewChat chats={this.state.chats} role={this.state.role} />}/>
 
-        <Route
-          path="/"
-          exact
-          render={() => (
-            <div>
-              <ChatList role={this.state.role} chats={this.state.chats} />
-            </div>
-          )}
-        />
-        <Route path="/chat/:id" exact component={Chat} />
-        <Route
-          path="/favourites"
-          exact
-          render={() => <Favourites favourites={this.state.chats} />}
-        />
-      </Router>
+        </Switch>
+      </div>
     );
   }
 }

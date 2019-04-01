@@ -4,34 +4,41 @@ import ProfilePic from "./ProfilePic";
 import Label from "./Label";
 import NotifyBadge from "./NotifyBadge";
 import Time from "./Time";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
 
 export default class ChatListEntry extends Component {
   render() {
+    let selectedClass = classNames({
+      "chatlist-entry": true,
+      selected: this.props.selected,
+      unread: this.props.notify
+    });
     return (
-      <article
-        onClick={this.props.click}
-        className={
-          (this.props.selected ? "chatlist-entry selected" : "chatlist-entry") + (this.props.notify ? " unread" : "")
-        }
-      >
+      <article className={selectedClass}>
         <ProfilePic
           img={this.props.img}
           modal={true}
           state={this.props.state}
           ball={true}
         />
-        <Label
-          name={this.props.name}
-          surname={this.props.surname}
-          role={this.props.role}
-          class="name"
-        />
-        {this.props.date && (
-          <div className="badges">
-            <Time type="time" date={this.props.date} />
-            <NotifyBadge notify={this.props.notify} />
-          </div>
-        )}
+        <Link
+          className="plain-text chatlist-entry"
+          to={`/chat/${this.props.id}`}
+        >
+          <Label
+            name={this.props.name}
+            surname={this.props.surname}
+            role={this.props.role}
+            type="name"
+          />
+          {this.props.date && (
+            <div className="badges">
+              <Time type="time" date={this.props.date} />
+              <NotifyBadge notify={this.props.notify} />
+            </div>
+          )}
+        </Link>
       </article>
     );
   }

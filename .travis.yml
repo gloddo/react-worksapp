@@ -5,7 +5,6 @@ before_script:
     - npm install firebase-tools -g
     - npm install
     - cd functions && npm install
-    - npm run build
 
 script:
     - firebase deploy --token "1/YhcJtmRPrjaIzHCQMDEButByWPMujLNRv4ldN_kQnas"

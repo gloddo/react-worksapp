@@ -5,7 +5,7 @@ before_script:
     - npm install firebase-tools -g
     - npm install
     - cd functions && npm install
-    - cd..
+    - cd ..
     - npm run build
 
 script:

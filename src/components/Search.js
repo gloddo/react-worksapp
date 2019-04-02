@@ -13,16 +13,16 @@ export default class Search extends Component {
     };
   }
   onchangeInput = (event, chats) => {
-    let prova = autocomplete(event.target.value,chats)
-    this.props.fn(prova)
+    let results = autocomplete(event.target.value, chats)
+    this.props.fn(results)
     }
   render() {
     return (
       <div className="search-tab">
         <div className="search">
           <input 
-            onChange={(e)=> this.onchangeInput(e, this.props.chats)} 
-            value={this.props.stateSearch}>
+            onChange={(e)=> this.onchangeInput(e, this.props.chats)}
+          >
           </input>
         </div>
         <section className="chat-list-search">
@@ -42,7 +42,7 @@ export default class Search extends Component {
                     this.setState({ selected: i });
                   }}
                 />
-                </Link>
+              </Link>
             );
           })}
       </section>

@@ -3,6 +3,7 @@ import "./App.css";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
+import Search from "./components/Search";
 import Favourites from "./components/Favourites";
 import { Route, Switch } from "react-router-dom";
 
@@ -12,6 +13,7 @@ class App extends Component {
   state = {
     page: "home",
     role:['ciao','miao','Some Job'],
+    stateSearch: [],
     chats: [
       {
         name: "pippo",
@@ -21,6 +23,7 @@ class App extends Component {
         notify: 100,
         img: "https://via.placeholder.com/58",
         state: "busy",
+        username:'ginopino',
         favs: true
       },
       {
@@ -31,6 +34,7 @@ class App extends Component {
         notify: 50,
         img: "https://via.placeholder.com/58",
         state: "busy",
+        username:'tizio',
         favs: true
       },
       {
@@ -41,6 +45,7 @@ class App extends Component {
         notify: 1,
         img: "https://via.placeholder.com/58",
         state: "free",
+        username:'sempronio',
         favs: false
       },
       {
@@ -51,6 +56,7 @@ class App extends Component {
         notify: 0,
         img: "https://via.placeholder.com/58",
         state: "free",
+        username:'caio',
         favs: true
       }
     ]
@@ -73,6 +79,7 @@ class App extends Component {
             render={() => <Favourites favourites={this.state.chats} />}
           />
           <Route path="/new-chat" exact render={() => <NewChat chats={this.state.chats} role={this.state.role} />}/>
+          <Route path="/search" exact render={() => <Search  fn={(results)=>this.setState({stateSearch:results})} state={(this.state.stateSearch)} chats={this.state.chats}/>}/>
         
         </Switch>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MessageText from "./MessageText";
 import Time from "./Time";
 import isToday from "date-fns/is_today";
+import PropTypes from "prop-types";
 
 export default class Message extends Component {
   render() {
@@ -20,3 +21,7 @@ export default class Message extends Component {
     );
   }
 }
+
+Message.propTypes = {
+  sent: PropTypes.bool
+};

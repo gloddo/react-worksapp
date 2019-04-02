@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
+import Label from "./Label";
 
 export default class ProfilePic extends Component {
   state = {
@@ -27,6 +28,7 @@ export default class ProfilePic extends Component {
           alt="pic"
         />
         <div className={this.props.ball && this.props.state} />
+        <Label username={this.props.username} />
       </picture>
     );
   }

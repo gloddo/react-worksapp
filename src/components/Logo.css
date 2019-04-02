@@ -52,6 +52,7 @@ a {
   z-index: 999;
   height: 64px;
   width: 110px;
+  text-align: center;
 }
 
 .logo-btn-tab {
@@ -66,4 +67,8 @@ a {
 .logo-tab {
   height: 60px;
   margin-top: 4px;
+}
+
+.shifted {
+  right: 80vw;
 }

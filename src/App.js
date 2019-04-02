@@ -98,7 +98,7 @@ class App extends Component {
 
           <Route path="/new-chat" exact render={() => <NewChat chats={this.state.chats} role={this.state.role} />}/>
           <Route path="/search" exact render={() => <Search  fn={(results)=>this.setState({stateSearch:results})} state={(this.state.stateSearch)} chats={this.state.chats}/>}/>
-        
+
 
         </Switch>
       </div>

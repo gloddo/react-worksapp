@@ -3,6 +3,7 @@ import "./App.css";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
+import ChatNavbar from "./components/ChatNavbar";
 import Favourites from "./components/Favourites";
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewChat from "./components/NewChat";
@@ -61,9 +62,13 @@ class App extends Component {
     ]
   };
 
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      path: nextProps.location.pathname,
+    })
+  }  
+
   render() {
-    console.log(this.state.path);
-    
     return (
       <div>
         <SideMenu
@@ -73,12 +78,12 @@ class App extends Component {
           closeMenu={() => this.setState({ menu: !this.state.menu })}
           username={this.state.username}
         />
-        <Navbar
+        {this.state.path.includes("chat") ? <ChatNavbar /> : <Navbar
           status={this.state.statusFree}
           openMenu={() => this.setState({ menu: !this.state.menu })}
           click={() => this.setState({ statusFree: !this.state.statusFree })}
           menuOpen={this.state.menu}
-        />
+        />}
         <Switch>
           <Route
             path="/"

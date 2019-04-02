@@ -4,7 +4,7 @@ import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
 import Favourites from "./components/Favourites";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 import NewChat from "./components/NewChat";
 
@@ -13,6 +13,7 @@ class App extends Component {
     page: "home",
     statusFree: true,
     role:['ciao','miao','Some Job'],
+    path: this.props.location.pathname,
     chats: [
       {
         name: "pippo",
@@ -58,6 +59,8 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.path);
+    
     return (
       <div>
         <Navbar status={this.state.statusFree} click={()=>this.setState({statusFree: !this.state.statusFree})} />
@@ -81,4 +84,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

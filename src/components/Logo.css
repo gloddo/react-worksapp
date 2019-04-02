@@ -68,3 +68,7 @@ a {
   height: 60px;
   margin-top: 4px;
 }
+
+.shifted {
+  right: 80vw;
+}

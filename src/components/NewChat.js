@@ -20,7 +20,6 @@ export default class NewChat extends Component {
                     name={e.name}
                     surname={e.surname}
                     role={undefined}
-                    className="name"
                   />
                 )}
               </article>

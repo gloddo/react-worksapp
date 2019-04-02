@@ -1,34 +1,33 @@
 import React, { Component } from "react";
-import { FaHome, FaSearch, FaPlus, FaBars } from "react-icons/fa";
-import Logo from "./Logo";
-import { Link } from "react-router-dom";
 import classNames from "classnames";
-import "./Logo.css";
+import MainNavbar from "./MainNavbar";
+import ChatNavbar from "./ChatNavbar";
 
 class Navbar extends Component {
   render() {
     let navClass = classNames({
       navbar: true,
-      shifted: this.props.menuOpen
+      shifted: this.props.isMenuOpen
     });
     return (
       <nav className={navClass}>
-        <ul>
-          <Link to="/">
-            <FaHome className="n-icon" />
-          </Link>
-          <Link to="/search">
-            <FaSearch className="n-icon" />
-          </Link>
-          <Logo status={this.props.status} click={this.props.click} />
-          <Link to="/new-chat">
-            <FaPlus className="n-icon" />
-          </Link>
-          <FaBars className="n-icon" onClick={this.props.openMenu} />
-        </ul>
+        {this.props.isChat ? (
+          <ChatNavbar
+            openMenu={this.props.openMenu}
+            isMenuOpen={this.props.isMenuOpen}
+            img={this.props.img}
+          />
+        ) : (
+          <MainNavbar
+            state={this.props.state}
+            openMenu={this.props.openMenu}
+            click={this.props.click}
+            isMenuOpen={this.props.isMenuOpen}
+          />
+        )}
       </nav>
     );
   }
 }
 
-export default Navbar
+export default Navbar;

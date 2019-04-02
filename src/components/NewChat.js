@@ -10,16 +10,15 @@ export default class NewChat extends Component {
         {this.props.role.map((el, i) => (
           <div key={i}>
             <h2 className="role-label">{el}</h2>
-            {this.props.chats.map((e, i) => (
-              <article key={i}>
-                {el === e.role && (
+            {this.props.chats.map(([id, obj]) => (
+              <article key={id}>
+                {el === obj.role && (
                   <ChatListEntry
-                    img={e.img}
+                    img={obj.img}
                     modal={true}
-                    state={e.state}
-                    name={e.name}
-                    surname={e.surname}
-                    role={undefined}
+                    state={obj.state}
+                    name={obj.name}
+                    surname={obj.surname}
                   />
                 )}
               </article>

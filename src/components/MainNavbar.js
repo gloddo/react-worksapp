@@ -1,29 +1,25 @@
 import React, { Component } from "react";
-import { FaSearch, FaBars, FaAngleLeft, FaPaperclip } from "react-icons/fa";
+import { FaHome, FaSearch, FaPlus, FaBars } from "react-icons/fa";
+import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import "./Logo.css";
-import ProfilePic from "./ProfilePic";
 
-class Navbar extends Component {
+export default class MainNavbar extends Component {
   render() {
-      console.log(this.props.img);
-      
     return (
       <ul>
         <Link to="/">
-          <FaAngleLeft className="n-icon" />
+          <FaHome className="n-icon" />
         </Link>
         <Link to="/search">
           <FaSearch className="n-icon" />
         </Link>
-        <ProfilePic state={this.props.state} modal={true} img={this.props.img}  />
+        <Logo status={this.props.status} click={this.props.click} />
         <Link to="/new-chat">
-          <FaPaperclip className="n-icon" />
+          <FaPlus className="n-icon" />
         </Link>
         <FaBars className="n-icon" onClick={this.props.openMenu} />
       </ul>
     );
   }
 }
-
-export default Navbar;

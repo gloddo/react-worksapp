@@ -83,7 +83,19 @@ a {
   line-height: 1.8em;
 }
 
-.profile-pic {
+.navbar .profile-pic {
   height: 50px;
   margin: 7px 0;
+}
+
+.navbar .label {
+  display: inline;
+}
+
+.navbar .name {
+  font-weight: bolder
+}
+
+.navbar .role {
+  font-size: 0.9em;
 }

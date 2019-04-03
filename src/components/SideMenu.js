@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { FaAngleLeft } from "react-icons/fa";
 import ProfilePic from "./ProfilePic";
 import { Link } from "react-router-dom";
-import "./SideMenu.css";
 import classNames from "classnames";
+import "./SideMenu.css";
 
 export default class SideMenu extends Component {
   render() {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FaHome, FaSearch, FaPlus, FaBars } from "react-icons/fa";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
-import "./Logo.css";
 
 export default class MainNavbar extends Component {
   render() {

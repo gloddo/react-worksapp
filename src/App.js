@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
@@ -7,6 +6,7 @@ import Favourites from "./components/Favourites";
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -14,6 +14,7 @@ class App extends Component {
     menu: false,
     statusFree: true,
     path: this.props.location.pathname,
+    history: this.props.history,
     username: "Tester",
     profileImg: "https://via.placeholder.com/58",
     role: ["ciao", "miao", "Some Job"],
@@ -63,7 +64,8 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      path: nextProps.location.pathname
+      path: nextProps.location.pathname,
+      history: nextProps.history
     });
   }
 
@@ -85,19 +87,22 @@ class App extends Component {
           isMenuOpen={this.state.menu}
           img={this.state.chats[this.state.path.substring(6)] || {img: "https://via.placeholder.com/55"}}
           isChat={this.state.path.includes("/chat")}
+          chat={this.state.chats[this.state.path.substring(6)]}
+          history={this.state.history}
         />
         <Switch>
           <Route
             path="/"
             exact
-            render={() => (
+            render={match => (
               <ChatList
                 role={this.state.role}
                 chats={Object.entries(this.state.chats)}
+                match={match}
               />
             )}
           />
-          <Route path="/chat/:id" exact component={Chat} />
+          <Route path="/chat/:id" exact render={match => <Chat match={match} />} />
           <Route
             path="/favourites"
             exact

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import MainNavbar from "./MainNavbar";
 import ChatNavbar from "./ChatNavbar";
+import "./Logo.css";
 
 class Navbar extends Component {
   render() {
@@ -17,6 +18,8 @@ class Navbar extends Component {
             isMenuOpen={this.props.isMenuOpen}
             img={this.props.img.img}
             state={this.props.state.state}
+            chat={this.props.chat}
+            history={this.props.history}
           />
         ) : (
           <MainNavbar

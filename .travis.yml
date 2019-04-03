@@ -5,10 +5,18 @@ before_script:
   - npm install firebase-tools -g
   - npm install
   - cd functions && npm install
-  - cd ..
-  - npm run build
 
-script:
-  - firebase deploy --token "1/YhcJtmRPrjaIzHCQMDEButByWPMujLNRv4ldN_kQnas"
+stages:
+  - name: compile
+    if: branch != master
+  - name: deploy
+    if: branch = master
 
-if: branch = master
+jobs:
+  include:
+    - stage: compile
+      script: npm run build
+    - stage: deploy
+      script:
+        - npm run build
+        - firebase deploy --token "1/YhcJtmRPrjaIzHCQMDEButByWPMujLNRv4ldN_kQnas"

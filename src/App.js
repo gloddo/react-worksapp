@@ -17,6 +17,7 @@ class App extends Component {
     username: "Tester",
     profileImg: "https://via.placeholder.com/58",
     role: ["ciao", "miao", "Some Job"],
+    stateSearch:[],
     chats: [
       {
         name: "pippo",

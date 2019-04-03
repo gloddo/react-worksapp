@@ -9,9 +9,9 @@ before_script:
 
 stages:
   - name: compile
-    if: branch != master
+    if: branch != Firebase-build
   - name: deploy
-    if: branch = master
+    if: branch = Firebase-build
 
 jobs:
   include:

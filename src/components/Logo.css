@@ -72,3 +72,18 @@ a {
 .shifted {
   right: 80vw;
 }
+
+.chat-label {
+  position: absolute;
+  top: 64px;
+  background-color: #f6f7eb;
+  color: black;
+  width: 100vw;
+  text-align: center;
+  line-height: 1.8em;
+}
+
+.profile-pic {
+  height: 50px;
+  margin: 7px 0;
+}

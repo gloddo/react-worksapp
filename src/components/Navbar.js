@@ -15,11 +15,12 @@ class Navbar extends Component {
           <ChatNavbar
             openMenu={this.props.openMenu}
             isMenuOpen={this.props.isMenuOpen}
-            img={this.props.img}
+            img={this.props.img.img}
+            state={this.props.state.state}
           />
         ) : (
           <MainNavbar
-            state={this.props.state}
+            status={this.props.status}
             openMenu={this.props.openMenu}
             click={this.props.click}
             isMenuOpen={this.props.isMenuOpen}

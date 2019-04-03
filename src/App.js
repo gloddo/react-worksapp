@@ -28,7 +28,7 @@ class App extends Component {
         state: "busy",
         favs: true
       },
-     1: {
+      1: {
         name: "pippo",
         surname: "sowlo",
         role: "Some Job",
@@ -61,11 +61,11 @@ class App extends Component {
     }
   };
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      path: nextProps.location.pathname,
-    })
-  }  
+      path: nextProps.location.pathname
+    });
+  }
 
   render() {
     return (
@@ -78,11 +78,12 @@ class App extends Component {
           username={this.state.username}
         />
         <Navbar
-          state={this.state.chats[this.state.path.substring(6)].state}
+          state={this.state.chats[this.state.path.substring(6)] || {}}
+          status={this.state.statusFree}
           openMenu={() => this.setState({ menu: !this.state.menu })}
           click={() => this.setState({ statusFree: !this.state.statusFree })}
           isMenuOpen={this.state.menu}
-          img={this.state.chats[this.state.path.substring(6)].img}
+          img={this.state.chats[this.state.path.substring(6)] || {img: "https://via.placeholder.com/55"}}
           isChat={this.state.path.includes("/chat")}
         />
         <Switch>
@@ -90,20 +91,28 @@ class App extends Component {
             path="/"
             exact
             render={() => (
-              <ChatList role={this.state.role} chats={Object.entries(this.state.chats)} />
+              <ChatList
+                role={this.state.role}
+                chats={Object.entries(this.state.chats)}
+              />
             )}
           />
           <Route path="/chat/:id" exact component={Chat} />
           <Route
             path="/favourites"
             exact
-            render={() => <Favourites favourites={Object.entries(this.state.chats)} />}
+            render={() => (
+              <Favourites favourites={Object.entries(this.state.chats)} />
+            )}
           />
           <Route
             path="/new-chat"
             exact
             render={() => (
-              <NewChat chats={Object.entries(this.state.chats)} role={this.state.role} />
+              <NewChat
+                chats={Object.entries(this.state.chats)}
+                role={this.state.role}
+              />
             )}
           />
         </Switch>

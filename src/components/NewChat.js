@@ -15,6 +15,7 @@ export default class NewChat extends Component {
                 {el === obj.role && (
                   <ChatListEntry
                     img={obj.img}
+                    id={id}
                     modal={true}
                     state={obj.state}
                     name={obj.name}

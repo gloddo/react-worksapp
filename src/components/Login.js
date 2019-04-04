@@ -49,7 +49,7 @@ export default class Login extends Component {
             />
             <p className="check-label">Remember me?</p>
           </span>
-          <button type="submit" name="button" onClick={this.login()}>
+          <button type="submit" name="button" onClick={this.login}>
             Submit
           </button>
           <a className="forgot-password" href="/">

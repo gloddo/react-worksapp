@@ -71,15 +71,8 @@ class App extends Component {
     }
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      path: nextProps.location.pathname,
-      history: nextProps.history
-    });
-  }
-
   render() {
-    if (!this.state.login) {
+    if (this.state.login) {
       return <Login setLogOn={logged => this.setState({ login: logged })} />;
     }
     return (
@@ -92,19 +85,19 @@ class App extends Component {
           username={this.state.username}
         />
         <Navbar
-          state={this.state.chats[this.state.path.substring(6)] || {}}
+          state={this.state.chats[this.props.location.pathname.substring(6)] || {}}
           status={this.state.statusFree}
           openMenu={() => this.setState({ menu: !this.state.menu })}
           click={() => this.setState({ statusFree: !this.state.statusFree })}
           isMenuOpen={this.state.menu}
           img={
-            this.state.chats[this.state.path.substring(6)] || {
+            this.state.chats[this.props.location.pathname.substring(6)] || {
               img: "https://via.placeholder.com/55"
             }
           }
-          isChat={this.state.path.includes("/chat")}
-          chat={this.state.chats[this.state.path.substring(6)]}
-          history={this.state.history}
+          isChat={this.props.location.pathname.includes("/chat")}
+          chat={this.state.chats[this.props.location.pathname.substring(6)]}
+          history={this.props.history}
         />
         <Switch>
           <Route
@@ -130,7 +123,6 @@ class App extends Component {
               <Favourites favourites={Object.entries(this.state.chats)} />
             )}
           />
-
           <Route
             path="/new-chat"
             exact

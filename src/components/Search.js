@@ -11,17 +11,14 @@ export default class Search extends Component {
     };
   }
   onchangeInput = (event, chats) => {
-    let results = autocomplete(event.target.value, chats)
-    this.props.fn(results)
-    }
+    let results = autocomplete(event.target.value, chats);
+    this.props.fn(results);
+  };
   render() {
     return (
       <div className="search-tab">
         <div className="search">
-          <input 
-            onChange={(e)=> this.onchangeInput(e, this.props.chats)}
-          >
-          </input>
+          <input onChange={e => this.onchangeInput(e, this.props.chats)} />
         </div>
         <section className="chat-list-search">
           {this.props.state.map(([id, obj]) => {
@@ -41,7 +38,7 @@ export default class Search extends Component {
                 />
             );
           })}
-      </section>
+        </section>
       </div>
     );
   }

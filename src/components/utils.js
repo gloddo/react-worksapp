@@ -1,3 +1,16 @@
+import * as firebase from "firebase";
+
+var config = {
+  apiKey: "AIzaSyCyQTT5lSbckU1ReA0vAGgxgB2fc9doYw8",
+  authDomain: "react-worksapp.firebaseapp.com",
+  databaseURL: "https://react-worksapp.firebaseio.com",
+  projectId: "react-worksapp",
+  storageBucket: "react-worksapp.appspot.com",
+  messagingSenderId: "310211456876"
+};
+firebase.initializeApp(config);
+var db = firebase.firestore();
+
 export const autocomplete = (event, results) => {
     event = event.toLowerCase();
     if(event !==''){

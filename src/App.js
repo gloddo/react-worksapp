@@ -7,11 +7,14 @@ import Favourites from "./components/Favourites";
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
+import Login from "./components/Login";
 import "./App.css";
+
 
 class App extends Component {
   state = {
     page: "home",
+    login: false,
     menu: false,
     statusFree: true,
     path: this.props.location.pathname,
@@ -76,6 +79,9 @@ class App extends Component {
   }
 
   render() {
+    if (!this.state.login) {
+      return <Login setLogOn={logged => this.setState({ login: logged })} />;
+    }
     return (
       <div>
         <SideMenu
@@ -124,6 +130,7 @@ class App extends Component {
               <Favourites favourites={Object.entries(this.state.chats)} />
             )}
           />
+
           <Route
             path="/new-chat"
             exact

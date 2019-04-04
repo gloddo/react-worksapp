@@ -90,13 +90,7 @@
   text-align: left;
 }
 
-.chat-input {
-  font-size: 1.1em;
-  padding: 5px 15px;
-  border: 2px solid #0fa3b1;
-  border-radius: 10px;
-  width: 80vw;
-}
+
 
 .text-input {
   display: flex;
@@ -106,6 +100,14 @@
   width: 95vw;
   margin: auto;
   height: 5.5vh;
+}
+
+#chat-input {
+  font-size: 1.1em;
+  padding: 5px 15px;
+  border: 2px solid #0fa3b1;
+  border-radius: 10px;
+  width: 80vw;
 }
 
 .chat {

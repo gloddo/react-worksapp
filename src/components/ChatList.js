@@ -16,18 +16,19 @@ export default class ChatList extends Component {
   render() {
     return (
       <section className="chat-list">
-        {this.props.chats.map((el, i) => {
+        {this.props.chats.map(([id, obj]) => {
           return (
             <ChatListEntry
-              key={i}
-              img={el.img}
-              name={el.name}
-              surname={el.surname}
-              role={el.role}
-              date={el.date}
-              notify={el.notify}
-              state={el.state}
-              selected={i === this.state.selected}
+              key={id}
+              id={id}
+              img={obj.img}
+              name={obj.name}
+              surname={obj.surname}
+              role={obj.role}
+              date={obj.date}
+              notify={obj.notify}
+              state={obj.state}
+              selected={id === this.state.selected}
             />
           );
         })}

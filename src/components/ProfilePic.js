@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
+import Label from "./Label";
+import classNames from "classnames"
 
 export default class ProfilePic extends Component {
   state = {
@@ -8,6 +10,11 @@ export default class ProfilePic extends Component {
   };
 
   render() {
+    let imgClass = classNames({
+      "profile-pic": true,
+      busy: this.props.state==="busy",
+      free: this.props.state==="free",
+    })
     return (
       <picture>
         {this.state.modalOn && (
@@ -22,11 +29,12 @@ export default class ProfilePic extends Component {
               ? () => this.setState({ modalOn: true })
               : undefined
           }
-          className={this.props.state + " profile-pic"}
+          className={imgClass}
           src={this.props.img || "img/placeholder"}
           alt="pic"
         />
         <div className={this.props.ball && this.props.state} />
+        <Label username={this.props.username} />
       </picture>
     );
   }

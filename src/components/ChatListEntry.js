@@ -15,17 +15,14 @@ export default class ChatListEntry extends Component {
       unread: this.props.notify
     });
     return (
-      <article className={selectedClass}>
-        <ProfilePic
-          img={this.props.img}
-          modal={true}
-          state={this.props.state}
-          ball={true}
-        />
-        <Link
-          className="plain-text chatlist-entry"
-          to={`/chat/${this.props.id}`}
-        >
+      <Link className="plain-text chatlist-entry" to={`/chat/${this.props.id}`}>
+        <article className={selectedClass}>
+          <ProfilePic
+            img={this.props.img}
+            modal={true}
+            state={this.props.state}
+            ball={true}
+          />
           <Label
             name={this.props.name}
             surname={this.props.surname}
@@ -37,8 +34,8 @@ export default class ChatListEntry extends Component {
               <NotifyBadge notify={this.props.notify} />
             </div>
           )}
-        </Link>
-      </article>
+        </article>
+      </Link>
     );
   }
 }

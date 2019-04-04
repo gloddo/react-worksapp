@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Input from "./Input";
-import Button from "./Button";
 import "./Login.css";
 import logo from "./res/logo-blk-b.png";
 
@@ -13,11 +11,11 @@ export default class Login extends Component {
         </div>
         <form className="login-form" onsubmit="">
           <p className="login-label">Username</p>
-          <Input className="login-input" value={this.props.username} />
+          <input className="login-input" value={this.props.username} />
           <p className="login-label">Password</p>
-          <Input className="login-input" value={this.props.password} />
+          <input className="login-input" value={this.props.password} />
           <span className="check">
-            <Input
+            <input
               className="chekbox"
               type="checkbox"
               name="remember-me"
@@ -25,10 +23,10 @@ export default class Login extends Component {
             />
             <p className="check-label">Remember me?</p>
           </span>
-          <Button type="button" name="button" onclick="login()">
+          <button type="submit" name="button" onClick={this.login()}>
             Submit
-          </Button>
-          <a className="forgot-password" href="#">
+          </button>
+          <a className="forgot-password" href="/">
             Forgot password?
           </a>
         </form>

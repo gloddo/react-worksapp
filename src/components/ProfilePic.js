@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
 import Label from "./Label";
-import classNames from "classnames"
+import classNames from "classnames";
 
 export default class ProfilePic extends Component {
   state = {
@@ -12,21 +12,29 @@ export default class ProfilePic extends Component {
   render() {
     let imgClass = classNames({
       "profile-pic": true,
-      busy: this.props.state==="busy",
-      free: this.props.state==="free",
-    })
+      busy: this.props.state === "busy",
+      free: this.props.state === "free"
+    });
     return (
       <picture>
         {this.state.modalOn && (
           <Modal
-            onClick={() => this.setState({ modalOn: false })}
+            onClick={e => {
+              e.stopPropagation();
+              e.preventDefault();
+              this.setState({ modalOn: false });
+            }}
             img={this.props.img}
           />
         )}
         <img
           onClick={
             this.props.modal
-              ? () => this.setState({ modalOn: true })
+              ? e => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  this.setState({ modalOn: true });
+                }
               : undefined
           }
           className={imgClass}

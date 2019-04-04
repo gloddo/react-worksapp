@@ -4,7 +4,6 @@ import { autocomplete } from "./utils";
 import ChatListEntry from "./ChatListEntry";
 import { Link } from "react-router-dom";
 
-
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -13,17 +12,14 @@ export default class Search extends Component {
     };
   }
   onchangeInput = (event, chats) => {
-    let results = autocomplete(event.target.value, chats)
-    this.props.fn(results)
-    }
+    let results = autocomplete(event.target.value, chats);
+    this.props.fn(results);
+  };
   render() {
     return (
       <div className="search-tab">
         <div className="search">
-          <input 
-            onChange={(e)=> this.onchangeInput(e, this.props.chats)}
-          >
-          </input>
+          <input onChange={e => this.onchangeInput(e, this.props.chats)} />
         </div>
         <section className="chat-list-search">
           {this.props.state.map((el, i) => {
@@ -35,7 +31,6 @@ export default class Search extends Component {
                   name={el.name}
                   surname={el.surname}
                   role={el.role}
-                  date={el.date}
                   state={el.state}
                   selected={i === this.state.selected}
                   click={() => {
@@ -45,7 +40,7 @@ export default class Search extends Component {
               </Link>
             );
           })}
-      </section>
+        </section>
       </div>
     );
   }

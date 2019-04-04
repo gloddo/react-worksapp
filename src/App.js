@@ -8,16 +8,18 @@ import Favourites from "./components/Favourites";
 import { Route, Switch } from "react-router-dom";
 import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
+import Login from "./components/Login";
 
 class App extends Component {
   state = {
     page: "home",
+    login: false,
     menu: false,
     statusFree: true,
     username: "Tester",
     profileImg: "https://via.placeholder.com/58",
     role: ["ciao", "miao", "Some Job"],
-    stateSearch:[],
+    stateSearch: [],
     chats: [
       {
         name: "pippo",
@@ -27,7 +29,7 @@ class App extends Component {
         notify: 100,
         img: "https://via.placeholder.com/58",
         state: "busy",
-        username:'ginopino',
+        username: "ginopino",
         favs: true
       },
       {
@@ -38,7 +40,7 @@ class App extends Component {
         notify: 50,
         img: "https://via.placeholder.com/58",
         state: "busy",
-        username:'tizio',
+        username: "tizio",
         favs: true
       },
       {
@@ -49,7 +51,7 @@ class App extends Component {
         notify: 1,
         img: "https://via.placeholder.com/58",
         state: "free",
-        username:'sempronio',
+        username: "sempronio",
         favs: false
       },
       {
@@ -60,13 +62,16 @@ class App extends Component {
         notify: 0,
         img: "https://via.placeholder.com/58",
         state: "free",
-        username:'caio',
+        username: "caio",
         favs: true
       }
     ]
   };
 
   render() {
+    if (!this.state.login) {
+      return <Login setLogOn={logged => this.setState({ login: logged })} />;
+    }
     return (
       <div>
         <SideMenu
@@ -97,10 +102,24 @@ class App extends Component {
             render={() => <Favourites favourites={this.state.chats} />}
           />
 
-          <Route path="/new-chat" exact render={() => <NewChat chats={this.state.chats} role={this.state.role} />}/>
-          <Route path="/search" exact render={() => <Search  fn={(results)=>this.setState({stateSearch:results})} state={(this.state.stateSearch)} chats={this.state.chats}/>}/>
-
-
+          <Route
+            path="/new-chat"
+            exact
+            render={() => (
+              <NewChat chats={this.state.chats} role={this.state.role} />
+            )}
+          />
+          <Route
+            path="/search"
+            exact
+            render={() => (
+              <Search
+                fn={results => this.setState({ stateSearch: results })}
+                state={this.state.stateSearch}
+                chats={this.state.chats}
+              />
+            )}
+          />
         </Switch>
       </div>
     );

@@ -26,23 +26,21 @@ export default class Search extends Component {
           </input>
         </div>
         <section className="chat-list-search">
-          {this.props.state.map((el, i) => {
+          {this.props.state.map(([id, obj]) => {
             return (
-              <Link key={i} className="plain-text" to={`/chat/${i}`}>
                 <ChatListEntry
-                  key={i}
-                  img={el.img}
-                  name={el.name}
-                  surname={el.surname}
-                  role={el.role}
-                  date={el.date}
-                  state={el.state}
-                  selected={i === this.state.selected}
+                  key={id}
+                  img={obj.img}
+                  name={obj.name}
+                  id={id}
+                  surname={obj.surname}
+                  role={obj.role}
+                  state={obj.state}
+                  selected={id === this.state.selected}
                   click={() => {
-                    this.setState({ selected: i });
+                    this.setState({ selected: id });
                   }}
                 />
-              </Link>
             );
           })}
       </section>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
+import Search from "./components/Search";
 import Favourites from "./components/Favourites";
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewChat from "./components/NewChat";
@@ -18,6 +19,7 @@ class App extends Component {
     username: "Tester",
     profileImg: "https://via.placeholder.com/58",
     role: ["ciao", "miao", "Some Job"],
+    stateSearch: [],
     chats: {
       0: {
         name: "pippo",
@@ -27,6 +29,7 @@ class App extends Component {
         notify: 100,
         img: "https://via.placeholder.com/58",
         state: "busy",
+        username: "ginopino",
         favs: true
       },
       1: {
@@ -37,6 +40,7 @@ class App extends Component {
         notify: 50,
         img: "https://via.placeholder.com/58",
         state: "busy",
+        username: "tizio",
         favs: true
       },
       2: {
@@ -47,6 +51,7 @@ class App extends Component {
         notify: 1,
         img: "https://via.placeholder.com/58",
         state: "free",
+        username: "sempronio",
         favs: false
       },
       3: {
@@ -57,6 +62,7 @@ class App extends Component {
         notify: 0,
         img: "https://via.placeholder.com/58",
         state: "free",
+        username: "caio",
         favs: true
       }
     }
@@ -85,7 +91,11 @@ class App extends Component {
           openMenu={() => this.setState({ menu: !this.state.menu })}
           click={() => this.setState({ statusFree: !this.state.statusFree })}
           isMenuOpen={this.state.menu}
-          img={this.state.chats[this.state.path.substring(6)] || {img: "https://via.placeholder.com/55"}}
+          img={
+            this.state.chats[this.state.path.substring(6)] || {
+              img: "https://via.placeholder.com/55"
+            }
+          }
           isChat={this.state.path.includes("/chat")}
           chat={this.state.chats[this.state.path.substring(6)]}
           history={this.state.history}
@@ -102,7 +112,11 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/chat/:id" exact render={match => <Chat match={match} />} />
+          <Route
+            path="/chat/:id"
+            exact
+            render={match => <Chat match={match} />}
+          />
           <Route
             path="/favourites"
             exact
@@ -117,6 +131,17 @@ class App extends Component {
               <NewChat
                 chats={Object.entries(this.state.chats)}
                 role={this.state.role}
+              />
+            )}
+          />
+          <Route
+            path="/search"
+            exact
+            render={() => (
+              <Search
+                fn={results => this.setState({ stateSearch: results })}
+                state={this.state.stateSearch}
+                chats={Object.entries(this.state.chats)}
               />
             )}
           />

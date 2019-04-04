@@ -3,12 +3,14 @@ import FavouritesEntry from "./FavouritesEntry";
 import "./Favourites.css";
 
 export default class Favourites extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       selected: ""
     };
   }
+
   render() {
     return (
       <section className="favourites">
@@ -16,6 +18,7 @@ export default class Favourites extends Component {
           {this.props.favourites.map(([id, obj]) => {
             if (obj.favs) {
               return (
+
                 <FavouritesEntry
                   key={id}
                   id={id}
@@ -26,6 +29,7 @@ export default class Favourites extends Component {
                   role={obj.role}
                   state={obj.state}
                 />
+
               );
             }
             return null;

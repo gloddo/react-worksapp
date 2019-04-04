@@ -1,23 +1,25 @@
 import React, { Component } from "react";
-import "./App.css";
 import Chat from "./components/Chat";
 import ChatList from "./components/ChatList";
 import Navbar from "./components/Navbar";
 import Favourites from "./components/Favourites";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
+import "./App.css";
 
 class App extends Component {
   state = {
     page: "home",
     menu: false,
     statusFree: true,
+    path: this.props.location.pathname,
+    history: this.props.history,
     username: "Tester",
     profileImg: "https://via.placeholder.com/58",
     role: ["ciao", "miao", "Some Job"],
-    chats: [
-      {
+    chats: {
+      0: {
         name: "pippo",
         surname: "sowlo",
         role: "ciao",
@@ -27,7 +29,7 @@ class App extends Component {
         state: "busy",
         favs: true
       },
-      {
+      1: {
         name: "pippo",
         surname: "sowlo",
         role: "Some Job",
@@ -37,7 +39,7 @@ class App extends Component {
         state: "busy",
         favs: true
       },
-      {
+      2: {
         name: "pippo",
         surname: "sowlo",
         role: "miao",
@@ -47,7 +49,7 @@ class App extends Component {
         state: "free",
         favs: false
       },
-      {
+      3: {
         name: "pippo",
         surname: "sowlo",
         role: "Some Job",
@@ -57,8 +59,15 @@ class App extends Component {
         state: "free",
         favs: true
       }
-    ]
+    }
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      path: nextProps.location.pathname,
+      history: nextProps.history
+    });
+  }
 
   render() {
     return (
@@ -71,30 +80,44 @@ class App extends Component {
           username={this.state.username}
         />
         <Navbar
+          state={this.state.chats[this.state.path.substring(6)] || {}}
           status={this.state.statusFree}
           openMenu={() => this.setState({ menu: !this.state.menu })}
           click={() => this.setState({ statusFree: !this.state.statusFree })}
-          menuOpen={this.state.menu}
+          isMenuOpen={this.state.menu}
+          img={this.state.chats[this.state.path.substring(6)] || {img: "https://via.placeholder.com/55"}}
+          isChat={this.state.path.includes("/chat")}
+          chat={this.state.chats[this.state.path.substring(6)]}
+          history={this.state.history}
         />
         <Switch>
           <Route
             path="/"
             exact
-            render={() => (
-              <ChatList role={this.state.role} chats={this.state.chats} />
+            render={match => (
+              <ChatList
+                role={this.state.role}
+                chats={Object.entries(this.state.chats)}
+                match={match}
+              />
             )}
           />
-          <Route path="/chat/:id" exact component={Chat} />
+          <Route path="/chat/:id" exact render={match => <Chat match={match} />} />
           <Route
             path="/favourites"
             exact
-            render={() => <Favourites favourites={this.state.chats} />}
+            render={() => (
+              <Favourites favourites={Object.entries(this.state.chats)} />
+            )}
           />
           <Route
             path="/new-chat"
             exact
             render={() => (
-              <NewChat chats={this.state.chats} role={this.state.role} />
+              <NewChat
+                chats={Object.entries(this.state.chats)}
+                role={this.state.role}
+              />
             )}
           />
         </Switch>
@@ -103,4 +126,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

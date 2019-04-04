@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Messages from "./Messages";
-import Input from "./Input";
 import "./Chat.css";
 import { FaPaperPlane } from "react-icons/fa";
 
@@ -56,11 +55,10 @@ export default class Chat extends Component {
       <section className="chat">
         <Messages messages={this.state.messages} />
         <form autoComplete="off" className="text-input" onSubmit={this.send}>
-          <Input
-            class="chat-input"
-            id="chat-input"
+          <input
+            className="chat-input"
             value={this.state.inputValue}
-            change={event => this.setState({ inputValue: event.target.value })}
+            onChange={event => this.setState({ inputValue: event.target.value })}
             placeholder="Write here your message"
           />
           <button className="send-btn" type="sumbit">

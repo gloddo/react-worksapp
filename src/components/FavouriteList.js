@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 
 export default class FavouriteList extends Component {
   render() {
-    return this.props.favourites.map((el, i) => {
+    return this.props.favourites.map(([id, obj]) => {
       return (
-        <li key={i}>
-          <ProfilePic key={i} img={el.img} state={el.state} />
+        <li key={id}>
+          <ProfilePic key={id} img={obj.img} state={obj.state} />
         </li>
       );
     });

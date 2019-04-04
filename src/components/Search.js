@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./Search.css";
 import { autocomplete } from "./utils";
 import ChatListEntry from "./ChatListEntry";
-import { Link } from "react-router-dom";
-
 
 export default class Search extends Component {
   constructor(props) {

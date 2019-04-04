@@ -23,7 +23,7 @@ class ChatNavbar extends Component {
           <Label
             name={user.name}
             surname={user.surname}
-            role={` - ${user.role}`}
+            role={" - "+user.role}
           />
         </div>
       </div>

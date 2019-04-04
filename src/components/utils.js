@@ -11,6 +11,21 @@ var config = {
 firebase.initializeApp(config);
 var db = firebase.firestore();
 
+export const getUsers = setState => {
+    let users = []
+    db.collection('users').get().then(doc=>{
+    if(doc.exists){
+      // doc.forEach(element => {
+      //   users.push(element)
+      // });
+      setState({users: doc})
+    }
+  })
+}
+
+
+
+
 export const autocomplete = (event, results) => {
     event = event.toLowerCase();
     if(event !==''){

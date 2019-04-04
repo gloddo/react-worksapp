@@ -9,6 +9,7 @@ import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
+import {db, getUsers} from "./components/utils"
 
 
 class App extends Component {
@@ -76,6 +77,10 @@ class App extends Component {
       path: nextProps.location.pathname,
       history: nextProps.history
     });
+  }
+  componentWillMount() {
+    getUsers(this.setState)
+    console.log(this.state.users)
   }
 
   render() {

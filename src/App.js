@@ -34,19 +34,17 @@ class App extends Component {
       history: nextProps.history
     });
   }
-  componentDidMount() {
+
+  onLogin(userId) {
+    this.setState({ login: true, userLogin: userId });
     getUsers(result => this.setState({ users: result }));
-    getChats(result => this.setState({ chats: result }), this.state.userLogin);
+    getChats(result => this.setState({ chats: result }), userId);
     getRoles(result => this.setState({ roles: result }));
   }
 
   render() {
     if (!this.state.login) {
-      return (
-        <Login
-          setLogOn={logged => this.setState({ login: true, userLogin: logged })}
-        />
-      );
+      return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
 
     return (

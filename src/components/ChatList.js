@@ -6,39 +6,32 @@ import FavouritesBar from "./FavouritesBar";
 import NewChat from "./NewChat";
 
 export default class ChatList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: ""
-    };
-  }
 
   render() {
     return (
       <section className="chat-list">
-        {this.props.chats.map(([id, obj]) => {
+        {this.props.chats.map((chat) => {
+          let user = this.props.users[chat.partecipants]
           return (
             <ChatListEntry
-              key={id}
-              id={id}
-              img={obj.img}
-              name={obj.name}
-              surname={obj.surname}
-              role={obj.role}
-              date={obj.date}
-              notify={obj.notify}
-              state={obj.state}
-              selected={id === this.state.selected}
+              key={user.id}
+              id={chat.id}
+              img={user.img}
+              name={user.name}
+              surname={user.surname}
+              role={user.role}
+              date={chat.date}
+              notify={chat.notify}
+              state={user.state}
             />
           );
         })}
 
-        <FavouritesBar favourites={this.props.chats} />
+        {/* <FavouritesBar favourites={this.props.chats} /> */}
       </section>
     );
   }
 }
 NewChat.propTypes = {
-  role: PropTypes.array,
   chats: PropTypes.array
 };

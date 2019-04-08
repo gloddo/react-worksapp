@@ -2,58 +2,33 @@ import React, { Component } from "react";
 import Messages from "./Messages";
 import "./Chat.css";
 import { FaPaperPlane } from "react-icons/fa";
+import {onMessages, sendMessages} from './utils'
 
 export default class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
       inputValue: "",
-      messages: [
-        {
-          date: new Date(2018, 3, 22),
-          text: "prova 1 2 3",
-          seen: true
-        },
-        {
-          date: new Date(2019, 3, 22),
-          text: "prova 1 2 3",
-          seen: true,
-          sent: true
-        },
-        {
-          date: new Date(2019, 3, 26),
-          text: "prova 1 2 3",
-          seen: false
-        }
-      ]
+      messages: []
     };
   }
 
-  send = event => {
-    if (this.state.inputValue) {
-      var temp = [];
-      this.state.messages.forEach(el => {
-        el.seen = true;
-        temp.push(el);
-      });
-      this.setState({
-        messages: temp.concat({
-          text: this.state.inputValue,
-          sent: true,
-          date: new Date(),
-          seen: true
-        }),
-        inputValue: ""
-      });
-    }
+  componentDidMount() { 
+    onMessages((result=>
+      this.setState({messages: result})
+    ),this.props.match.params.id)
+  }
 
-    event.preventDefault();
+  send = event => {
+    event.preventDefault()
+    sendMessages(this.state.inputValue, new Date(), this.props.match.params.id, this.props.userLogin)
+
   };
 
   render() {
     return (
       <section className="chat">
-        <Messages messages={this.state.messages} />
+        <Messages messages={this.state.messages} userLogin={this.props.userLogin} />
         <form autoComplete="off" className="text-input" onSubmit={this.send}>
           <input
             className="chat-input"

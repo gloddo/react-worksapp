@@ -7,6 +7,7 @@ import Time from "./Time";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
+
 export default class ChatListEntry extends Component {
   render() {
     let selectedClass = classNames({

@@ -9,9 +9,8 @@ import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
-import {db, getUsers, getChats, getRoles} from "./components/utils"
+import { db, getUsers, getChats, getRoles } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
-
 
 class App extends Component {
   state = {
@@ -22,13 +21,12 @@ class App extends Component {
     statusFree: true,
     path: this.props.location.pathname,
     history: this.props.history,
-    userLogin: "0JRRbDeZ4pa2QIJoHmfKhmBxTSI3",
+    userLogin: "",
     profileImg: "https://via.placeholder.com/58",
     roles: [],
     stateSearch: [],
-    chats: [],
+    chats: []
   };
-
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -37,17 +35,19 @@ class App extends Component {
     });
   }
   componentDidMount() {
-    getUsers(result=>this.setState({users: result}))
-    getChats((result=>
-      this.setState({chats: result})
-    ),this.state.userLogin)
-    getRoles(result=>this.setState({roles: result}))
+    getUsers(result => this.setState({ users: result }));
+    getChats(result => this.setState({ chats: result }), this.state.userLogin);
+    getRoles(result => this.setState({ roles: result }));
   }
 
   render() {
-    // if (!this.state.login) {
-    //   return <Login setLogOn={logged => this.setState({ login: logged })} />;
-    // }
+    if (!this.state.login) {
+      return (
+        <Login
+          setLogOn={logged => this.setState({ login: true, userLogin: logged })}
+        />
+      );
+    }
 
     return (
       <div>
@@ -60,39 +60,49 @@ class App extends Component {
         />
 
         <Switch>
-        <Route path="/chat/:id" render={props=>
-          <ChatNavbar 
-            users={this.state.users}
-            chats={this.state.chats}
-            match={props.match}
-            history={props.history}
-            userLogin={this.state.userLogin}
-            openMenu={() => this.setState({ menu: !this.state.menu })}
-
-            isMenuOpen={this.state.menu}
-            img={            this.state.chats[this.state.path.substring(6)] || {
-              img: "https://via.placeholder.com/55"
-            }}
-            state={this.state.chats[this.state.path.substring(6)] || {}}
-          />} />
-        <Route render={()=>
-          <Navbar 
-          state={this.state.chats[this.state.path.substring(6)] || {}}
-
-          status={this.state.statusFree}
-          openMenu={() => this.setState({ menu: !this.state.menu })}
-          click={() => this.setState({ statusFree: !this.state.statusFree })}
-          isMenuOpen={this.state.menu}
-          img={
-            this.state.chats[this.props.location.pathname.substring(6)] || {
-              img: "https://via.placeholder.com/55"
-            }
-          }
-
-          isChat={this.state.path.includes("/chat")}
-          user={'a'}
-          history={this.state.history}
-          />} />
+          <Route
+            path="/chat/:id"
+            render={props => (
+              <ChatNavbar
+                users={this.state.users}
+                chats={this.state.chats}
+                match={props.match}
+                history={props.history}
+                userLogin={this.state.userLogin}
+                openMenu={() => this.setState({ menu: !this.state.menu })}
+                isMenuOpen={this.state.menu}
+                img={
+                  this.state.chats[this.state.path.substring(6)] || {
+                    img: "https://via.placeholder.com/55"
+                  }
+                }
+                state={this.state.chats[this.state.path.substring(6)] || {}}
+              />
+            )}
+          />
+          <Route
+            render={() => (
+              <Navbar
+                state={this.state.chats[this.state.path.substring(6)] || {}}
+                status={this.state.statusFree}
+                openMenu={() => this.setState({ menu: !this.state.menu })}
+                click={() =>
+                  this.setState({ statusFree: !this.state.statusFree })
+                }
+                isMenuOpen={this.state.menu}
+                img={
+                  this.state.chats[
+                    this.props.location.pathname.substring(6)
+                  ] || {
+                    img: "https://via.placeholder.com/55"
+                  }
+                }
+                isChat={this.state.path.includes("/chat")}
+                user={"a"}
+                history={this.state.history}
+              />
+            )}
+          />
         </Switch>
 
         <Switch>
@@ -111,24 +121,20 @@ class App extends Component {
           <Route
             path="/chat/:id"
             exact
-            render={props => <Chat match={props.match} 
-            userLogin={this.state.userLogin} />}
+            render={props => (
+              <Chat match={props.match} userLogin={this.state.userLogin} />
+            )}
           />
           <Route
             path="/favourites"
             exact
-            render={() => (
-              <Favourites favourites={this.state.chats} />
-            )}
+            render={() => <Favourites favourites={this.state.chats} />}
           />
           <Route
             path="/new-chat"
             exact
             render={() => (
-              <NewChat
-                users={this.state.users}
-                roles={this.state.roles}
-              />
+              <NewChat users={this.state.users} roles={this.state.roles} />
             )}
           />
           <Route

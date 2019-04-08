@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Login.css";
 import logo from "./res/logo-blk-b.png";
-import * as firebase from "firebase";
 
+import { login } from "./utils";
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,16 +13,9 @@ export default class Login extends Component {
   }
   login = e => {
     e.preventDefault();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.username, this.state.password)
-      .then(() => console.log("aaa"))
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
+    login(this.state.username, this.state.password).then(uid =>
+      this.props.setLogOn(uid)
+    );
   };
   render() {
     return (
@@ -37,9 +30,19 @@ export default class Login extends Component {
           onSubmit={this.login}
         >
           <p className="login-label">Username</p>
-          <input className="login-input" value={this.props.username} />
+          <input
+            className="login-input"
+            type="email"
+            value={this.state.username}
+            onChange={e => this.setState({ username: e.target.value })}
+          />
           <p className="login-label">Password</p>
-          <input className="login-input" value={this.props.password} />
+          <input
+            className="login-input"
+            type="password"
+            value={this.state.password}
+            onChange={e => this.setState({ password: e.target.value })}
+          />
           <span className="check">
             <input
               className="chekbox"

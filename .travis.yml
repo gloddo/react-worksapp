@@ -16,7 +16,7 @@ stages:
 jobs:
   include:
     - stage: compile
-      script: npm run build
+      script: CI=false npm run build
     - stage: deploy
       script:
         - npm run build

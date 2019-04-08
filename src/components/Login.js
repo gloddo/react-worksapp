@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Input from "./Input";
-import Button from "./Button";
 import "./Login.css";
 import logo from "./res/logo-blk-b.png";
 import * as firebase from "firebase";
@@ -39,29 +37,11 @@ export default class Login extends Component {
           onSubmit={this.login}
         >
           <p className="login-label">Username</p>
-          <Input
-            change={e =>
-              this.setState({
-                username: e.target.value
-              })
-            }
-            id="username"
-            className="login-input"
-            value={this.props.username}
-          />
+          <input className="login-input" value={this.props.username} />
           <p className="login-label">Password</p>
-          <Input
-            change={e =>
-              this.setState({
-                password: e.target.value
-              })
-            }
-            id="password"
-            className="login-input"
-            value={this.props.password}
-          />
+          <input className="login-input" value={this.props.password} />
           <span className="check">
-            <Input
+            <input
               className="chekbox"
               type="checkbox"
               name="remember-me"
@@ -69,10 +49,10 @@ export default class Login extends Component {
             />
             <p className="check-label">Remember me?</p>
           </span>
-          <Button type="submit" name="button">
+          <button type="submit" name="button" onClick={this.login}>
             Submit
-          </Button>
-          <a className="forgot-password" href="#">
+          </button>
+          <a className="forgot-password" href="/">
             Forgot password?
           </a>
         </form>

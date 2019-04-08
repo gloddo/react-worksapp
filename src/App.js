@@ -29,6 +29,7 @@ class App extends Component {
     chats: [],
   };
 
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       path: nextProps.location.pathname,
@@ -47,6 +48,7 @@ class App extends Component {
     // if (!this.state.login) {
     //   return <Login setLogOn={logged => this.setState({ login: logged })} />;
     // }
+
     return (
       <div>
         <SideMenu
@@ -56,6 +58,7 @@ class App extends Component {
           closeMenu={() => this.setState({ menu: !this.state.menu })}
           userLogin={this.state.userLogin}
         />
+
         <Switch>
         <Route path="/chat/:id" render={props=>
           <ChatNavbar 
@@ -75,20 +78,23 @@ class App extends Component {
         <Route render={()=>
           <Navbar 
           state={this.state.chats[this.state.path.substring(6)] || {}}
+
           status={this.state.statusFree}
           openMenu={() => this.setState({ menu: !this.state.menu })}
           click={() => this.setState({ statusFree: !this.state.statusFree })}
           isMenuOpen={this.state.menu}
           img={
-            this.state.chats[this.state.path.substring(6)] || {
+            this.state.chats[this.props.location.pathname.substring(6)] || {
               img: "https://via.placeholder.com/55"
             }
           }
+
           isChat={this.state.path.includes("/chat")}
           user={'a'}
           history={this.state.history}
           />} />
         </Switch>
+
         <Switch>
           <Route
             path="/"
@@ -115,7 +121,6 @@ class App extends Component {
               <Favourites favourites={this.state.chats} />
             )}
           />
-
           <Route
             path="/new-chat"
             exact

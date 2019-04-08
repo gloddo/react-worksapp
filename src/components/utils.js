@@ -60,7 +60,7 @@ export const getMessages = (callback, chatid) => {
 }
 
 export const onMessages = (callback, chatid) => {
-  db.collection('messages').where('chatID','==',chatid).onSnapshot(coll => {
+  db.collection('messages').where('chatID','==',chatid).orderBy('time', "asc").onSnapshot(coll => {
     let message = []
       coll.forEach(element => {
         message.push({
@@ -75,7 +75,7 @@ export const onMessages = (callback, chatid) => {
 export const sendMessages = (text, time, chatID, sender) => {
   let message = {
     text: text,
-    time:time,
+    time: time,
     chatID: chatID,
     sender: sender
   }

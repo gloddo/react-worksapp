@@ -29,7 +29,7 @@ export default class Chat extends Component {
   render() {
     return (
       <section className="chat">
-        <Messages messages={this.state.messages} />
+        <Messages messages={this.state.messages} userLogin={this.props.userLogin} />
         <form autoComplete="off" className="text-input" onSubmit={this.send}>
           <Input
             class="chat-input"

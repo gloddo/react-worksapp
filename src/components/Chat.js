@@ -3,31 +3,21 @@ import Messages from "./Messages";
 import Input from "./Input";
 import "./Chat.css";
 import { FaPaperPlane } from "react-icons/fa";
+import {getMessages} from './utils'
 
 export default class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
       inputValue: "",
-      messages: [
-        {
-          date: new Date(2018, 3, 22),
-          text: "prova 1 2 3",
-          seen: true
-        },
-        {
-          date: new Date(2019, 3, 22),
-          text: "prova 1 2 3",
-          seen: true,
-          sent: true
-        },
-        {
-          date: new Date(2019, 3, 26),
-          text: "prova 1 2 3",
-          seen: false
-        }
-      ]
+      messages: []
     };
+  }
+
+  componentDidMount() { 
+    getMessages((result=>
+      this.setState({messages: result})
+    ),this.props.match.params.id)
   }
 
   send = event => {

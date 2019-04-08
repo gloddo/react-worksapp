@@ -7,19 +7,19 @@ export default class NewChat extends Component {
   render() {
     return (
       <section className="new-chat">
-        {this.props.role.map((el, i) => (
+        {this.props.roles.map((el, i) => (
           <div key={i}>
             <h2 className="role-label">{el}</h2>
-            {this.props.chats.map(([id, obj]) => (
-              <article key={id}>
-                {el === obj.role && (
+            {this.props.users.map((user) => (
+              <article key={user.id}>
+                {el === user.role && (
                   <ChatListEntry
-                    img={obj.img}
-                    id={id}
+                    img={user.img}
+                    id={user}
                     modal={true}
-                    state={obj.state}
-                    name={obj.name}
-                    surname={obj.surname}
+                    state={user.state}
+                    name={user.name}
+                    surname={user.surname}
                   />
                 )}
               </article>
@@ -33,5 +33,5 @@ export default class NewChat extends Component {
 
 NewChat.propTypes = {
   role: PropTypes.array,
-  chats: PropTypes.array
+  users: PropTypes.array
 };

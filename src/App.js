@@ -9,67 +9,23 @@ import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
-import {db, getUsers} from "./components/utils"
+import {db, getUsers, getChats, getRoles} from "./components/utils"
 
 
 class App extends Component {
   state = {
+    users: [],
     page: "home",
     login: false,
     menu: false,
     statusFree: true,
     path: this.props.location.pathname,
     history: this.props.history,
-    username: "Tester",
+    userLogin: "0JRRbDeZ4pa2QIJoHmfKhmBxTSI3",
     profileImg: "https://via.placeholder.com/58",
-    role: ["ciao", "miao", "Some Job"],
+    roles: [],
     stateSearch: [],
-    chats: {
-      0: {
-        name: "pippo",
-        surname: "sowlo",
-        role: "ciao",
-        date: new Date(),
-        notify: 100,
-        img: "https://via.placeholder.com/58",
-        state: "busy",
-        username: "ginopino",
-        favs: true
-      },
-      1: {
-        name: "pippo",
-        surname: "sowlo",
-        role: "Some Job",
-        date: new Date(),
-        notify: 50,
-        img: "https://via.placeholder.com/58",
-        state: "busy",
-        username: "tizio",
-        favs: true
-      },
-      2: {
-        name: "pippo",
-        surname: "sowlo",
-        role: "miao",
-        date: new Date(),
-        notify: 1,
-        img: "https://via.placeholder.com/58",
-        state: "free",
-        username: "sempronio",
-        favs: false
-      },
-      3: {
-        name: "pippo",
-        surname: "sowlo",
-        role: "Some Job",
-        date: new Date(),
-        notify: 0,
-        img: "https://via.placeholder.com/58",
-        state: "free",
-        username: "caio",
-        favs: true
-      }
-    }
+    chats: [],
   };
 
   componentWillReceiveProps(nextProps) {
@@ -78,15 +34,18 @@ class App extends Component {
       history: nextProps.history
     });
   }
-  componentWillMount() {
-    getUsers(this.setState)
-    console.log(this.state.users)
+  componentDidMount() {
+    getUsers(result=>this.setState({users: result}))
+    getChats((result=>
+      this.setState({chats: result})
+    ),this.state.userLogin)
+    getRoles(result=>this.setState({roles: result}))
   }
 
   render() {
-    if (!this.state.login) {
-      return <Login setLogOn={logged => this.setState({ login: logged })} />;
-    }
+    // if (!this.state.login) {
+    //   return <Login setLogOn={logged => this.setState({ login: logged })} />;
+    // }
     return (
       <div>
         <SideMenu
@@ -94,7 +53,7 @@ class App extends Component {
           isOpen={this.state.menu}
           img={this.state.profileImg}
           closeMenu={() => this.setState({ menu: !this.state.menu })}
-          username={this.state.username}
+          userLogin={this.state.userLogin}
         />
         <Navbar
           state={this.state.chats[this.state.path.substring(6)] || {}}
@@ -117,8 +76,9 @@ class App extends Component {
             exact
             render={match => (
               <ChatList
-                role={this.state.role}
-                chats={Object.entries(this.state.chats)}
+                userLogin={this.state.userLogin}
+                users={this.state.users}
+                chats={this.state.chats}
                 match={match}
               />
             )}
@@ -126,13 +86,13 @@ class App extends Component {
           <Route
             path="/chat/:id"
             exact
-            render={match => <Chat match={match} />}
+            render={props => <Chat match={props.match} />}
           />
           <Route
             path="/favourites"
             exact
             render={() => (
-              <Favourites favourites={Object.entries(this.state.chats)} />
+              <Favourites favourites={this.state.chats} />
             )}
           />
 
@@ -141,8 +101,8 @@ class App extends Component {
             exact
             render={() => (
               <NewChat
-                chats={Object.entries(this.state.chats)}
-                role={this.state.role}
+                users={this.state.users}
+                roles={this.state.roles}
               />
             )}
           />

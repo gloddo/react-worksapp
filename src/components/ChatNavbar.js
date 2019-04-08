@@ -21,9 +21,9 @@ class ChatNavbar extends Component {
         </ul>
         <div className="chat-label">
           <Label
-            name={user.name}
-            surname={user.surname}
-            role={" - "+user.role}
+            //name={user.name}
+            //surname={user.surname}
+            //role={" - "+user.role}
           />
         </div>
       </div>

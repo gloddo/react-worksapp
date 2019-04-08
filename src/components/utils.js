@@ -48,20 +48,40 @@ export const getRoles = callback => {
 }
 export const getMessages = (callback, chatid) => {
   let message = []
-  console.log(chatid)
   db.collection('messages').where('chatID','==',chatid).get().then(coll => {
       coll.forEach(element => {
-        console.log(element)
         message.push({
           ...element.data(),
-          date: element.data().time.toDate(),
+          date: element.data().time.toDate()
         })
       });
-      console.log(message)
       callback(message)
   })
 }
 
+export const onMessages = (callback, chatid) => {
+  db.collection('messages').where('chatID','==',chatid).onSnapshot(coll => {
+    let message = []
+      coll.forEach(element => {
+        message.push({
+          ...element.data(),
+          date: element.data().time.toDate()
+        })
+      });
+      callback(message)
+  })
+}
+
+export const sendMessages = (text, time, chatID, sender) => {
+  let message = {
+    text: text,
+    time:time,
+    chatID: chatID,
+    sender: sender
+  }
+  console.log(message)
+  db.collection('messages').add(message).then(()=>console.log('messaggio inviato')).catch(error=>console.log(error))
+}
 
 
 

@@ -3,7 +3,7 @@ import Messages from "./Messages";
 import Input from "./Input";
 import "./Chat.css";
 import { FaPaperPlane } from "react-icons/fa";
-import {getMessages} from './utils'
+import {onMessages, sendMessages} from './utils'
 
 export default class Chat extends Component {
   constructor(props) {
@@ -15,30 +15,15 @@ export default class Chat extends Component {
   }
 
   componentDidMount() { 
-    getMessages((result=>
+    onMessages((result=>
       this.setState({messages: result})
     ),this.props.match.params.id)
   }
 
   send = event => {
-    if (this.state.inputValue) {
-      var temp = [];
-      this.state.messages.forEach(el => {
-        el.seen = true;
-        temp.push(el);
-      });
-      this.setState({
-        messages: temp.concat({
-          text: this.state.inputValue,
-          sent: true,
-          date: new Date(),
-          seen: true
-        }),
-        inputValue: ""
-      });
-    }
+    event.preventDefault()
+    sendMessages(this.state.inputValue, new Date(), this.props.match.params.id, this.props.userLogin)
 
-    event.preventDefault();
   };
 
   render() {

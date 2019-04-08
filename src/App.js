@@ -10,6 +10,7 @@ import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
 import {db, getUsers, getChats, getRoles} from "./components/utils"
+import ChatNavbar from "./components/ChatNavbar";
 
 
 class App extends Component {
@@ -55,7 +56,24 @@ class App extends Component {
           closeMenu={() => this.setState({ menu: !this.state.menu })}
           userLogin={this.state.userLogin}
         />
-        <Navbar
+        <Switch>
+        <Route path="/chat/:id" render={props=>
+          <ChatNavbar 
+            users={this.state.users}
+            chats={this.state.chats}
+            match={props.match}
+            history={props.history}
+            userLogin={this.state.userLogin}
+            openMenu={() => this.setState({ menu: !this.state.menu })}
+
+            isMenuOpen={this.state.menu}
+            img={            this.state.chats[this.state.path.substring(6)] || {
+              img: "https://via.placeholder.com/55"
+            }}
+            state={this.state.chats[this.state.path.substring(6)] || {}}
+          />} />
+        <Route render={()=>
+          <Navbar 
           state={this.state.chats[this.state.path.substring(6)] || {}}
           status={this.state.statusFree}
           openMenu={() => this.setState({ menu: !this.state.menu })}
@@ -67,9 +85,10 @@ class App extends Component {
             }
           }
           isChat={this.state.path.includes("/chat")}
-          chat={this.state.chats[this.state.path.substring(6)]}
+          user={'a'}
           history={this.state.history}
-        />
+          />} />
+        </Switch>
         <Switch>
           <Route
             path="/"
@@ -86,7 +105,8 @@ class App extends Component {
           <Route
             path="/chat/:id"
             exact
-            render={props => <Chat match={props.match} />}
+            render={props => <Chat match={props.match} 
+            userLogin={this.state.userLogin} />}
           />
           <Route
             path="/favourites"

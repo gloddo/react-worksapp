@@ -12,7 +12,6 @@ export default class ChatList extends Component {
       <section className="chat-list">
         {this.props.chats.map((chat) => {
           let user = this.props.users[chat.partecipants]
-          console.log(user,chat.partecipants,this.props.users)
           return (
             <ChatListEntry
               key={user.id}

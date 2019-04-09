@@ -9,7 +9,7 @@ import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
-import { db, getUsers, getChats, getRoles } from "./components/utils";
+import { getUsers, getChats, getRoles } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
 class App extends Component {
@@ -61,18 +61,18 @@ class App extends Component {
                 openMenu={() => this.setState({ menu: !this.state.menu })}
                 isMenuOpen={this.state.menu}
                 img={
-                  this.state.chats[this.state.path.substring(6)] || {
+                  this.state.chats[this.props.location.pathname.substring(6)] || {
                     img: "https://via.placeholder.com/55"
                   }
                 }
-                state={this.state.chats[this.state.path.substring(6)] || {}}
+                state={this.state.chats[this.props.location.pathname.substring(6)] || {}}
               />
             )}
           />
           <Route
             render={() => (
               <Navbar
-                state={this.state.chats[this.state.path.substring(6)] || {}}
+                state={this.state.chats[this.props.location.pathname.substring(6)] || {}}
                 status={this.state.statusFree}
                 openMenu={() => this.setState({ menu: !this.state.menu })}
                 click={() =>
@@ -86,7 +86,7 @@ class App extends Component {
                     img: "https://via.placeholder.com/55"
                   }
                 }
-                isChat={this.state.path.includes("/chat")}
+                isChat={this.props.location.pathname.includes("/chat")}
                 user={"a"}
                 history={this.state.history}
               />

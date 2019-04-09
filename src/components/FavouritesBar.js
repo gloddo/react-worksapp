@@ -10,7 +10,7 @@ export default class FavouritesBar extends Component {
       <div className="favourites-bar">
         <FaStar className="f-icon" color="#f6f7eb" size="3em" />
         <ul>
-          <FavouriteBarList favourites={this.props.favourites} />
+          <FavouriteBarList favourites={this.props.favourites} users={this.props.users}/>
         </ul>
         <Link to="/favourites">
           <FaAngleUp className="f-icon" color="#f6f7eb" size="3em" />

@@ -63,7 +63,7 @@ export const getRoles = callback => {
       coll.forEach(element => {
         roles.push(element.data().role);
       });
-      callback(new Array(...new Set(roles)));
+      callback([...new Set(roles)]);
     });
 };
 export const getMessages = (callback, chatid) => {

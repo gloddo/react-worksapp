@@ -5,13 +5,15 @@ import "./NewChat.css";
 
 export default class NewChat extends Component {
   render() {
+    console.log(this.props.users);
+    
     return (
       <section className="new-chat">
         {this.props.roles.map((el, i) => (
           <div key={i}>
             <h2 className="role-label">{el}</h2>
-            {this.props.users.map((user) => (
-              <article key={user.id}>
+            {Object.entries(this.props.users).map(([id, user]) => (
+              <article key={id}>
                 {el === user.role && (
                   <ChatListEntry
                     img={user.img}

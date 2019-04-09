@@ -9,7 +9,7 @@ export default class Messages extends Component {
         <div key={i} className={el.seen ? null : "unseen"}>
           <Message
             key={i}
-            sent={el.sender==this.props.userLogin}
+            sent={el.sender===this.props.userLogin}
             text={el.text}
             date={el.date}
             seen={el.seen}

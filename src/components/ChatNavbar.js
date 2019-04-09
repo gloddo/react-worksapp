@@ -20,7 +20,7 @@ class ChatNavbar extends Component {
           <ProfilePic
             state={this.props.state}
             modal={true}
-            //img={user.img}
+            img={user.img}
           />
           <FaPaperclip className="n-icon" onClick={this.props.upload} />
           <FaBars className="n-icon" onClick={this.props.openMenu} />

@@ -27,7 +27,7 @@ export default class ChatList extends Component {
           );
         })}
 
-        {/* <FavouritesBar favourites={this.props.chats} /> */}
+        <FavouritesBar favourites={this.props.chats} users={this.props.users}/>
       </section>
     );
   }

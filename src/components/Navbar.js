@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import MainNavbar from "./MainNavbar";
-import ChatNavbar from "./ChatNavbar";
 import "./Logo.css";
 
 class Navbar extends Component {

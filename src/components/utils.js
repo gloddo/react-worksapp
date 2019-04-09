@@ -48,7 +48,7 @@ export const getChats = (callback, user) => {
           date: element.data().date.toDate(),
           partecipants: element
             .data()
-            .partecipants.find(partecipant => partecipant != user),
+            .partecipants.find(partecipant => partecipant !== user),
           id: element.id
         });
       });

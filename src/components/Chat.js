@@ -14,9 +14,12 @@ export default class Chat extends Component {
   }
 
   componentDidMount() { 
-    onMessages((result=>
-      this.setState({messages: result})
+    onMessages((result=>{
+      console.log(result);
+      
+      this.setState({messages: result})}
     ),this.props.match.params.id)
+    // document.querySelector(".chat").scrollTo(10000)
   }
 
   send = event => {

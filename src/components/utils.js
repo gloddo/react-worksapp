@@ -139,13 +139,26 @@ export const autocomplete = (event, results) => {
   return [];
 };
 
-export const uploadPicture = (file, type, chatId, userId) => {
-  const url = `${type}-${chatId}/${Date.now()}-${file.name}`;
+const updateProfilePic = (userId, mediaUrl) => {
+  db.collection("users")
+  .doc(userId)
+  .set({
+    img: mediaUrl,
+  })
+  .then(() => console.log("immagine aggiornata"))
+  .catch(error => console.log(error));
+}
+
+export const uploadPicture = (file, type, userId, chatId) => {
+  const url = `${type}-${chatId || userId}/${Date.now()}-${file.name}`;
   var ref = storage.ref().child(url);
   ref.put(file).then(async result => {
     let mediaUrl = await result.ref.getDownloadURL();
     let mediaType = result.metadata.contentType;
     let mediaName = file.name
-    sendMessages("", new Date(), chatId, userId, mediaUrl, mediaType, mediaName);
+    if (chatId){
+      return sendMessages("", new Date(), chatId, userId, mediaUrl, mediaType, mediaName)
+    }
+    return updateProfilePic(userId, mediaUrl)
   });
 };

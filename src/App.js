@@ -9,7 +9,7 @@ import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
-import { getUsers, getChats, getRoles } from "./components/utils";
+import { uploadPicture, getUsers, getChats, getRoles } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
 class App extends Component {
@@ -20,6 +20,7 @@ class App extends Component {
     menu: false,
     statusFree: true,
     userLogin: "",
+    imgPlaceholder: "res/photo.png",
     profileImg: "https://via.placeholder.com/58",
     roles: [],
     stateSearch: [],
@@ -33,11 +34,12 @@ class App extends Component {
     getRoles(result => this.setState({ roles: result }));
   }
 
-  render() {
+  render() { 
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
-
+    // console.log(this.state.users, this.state.chats);
+    
     return (
       <div>
         <SideMenu
@@ -60,35 +62,24 @@ class App extends Component {
                 userLogin={this.state.userLogin}
                 openMenu={() => this.setState({ menu: !this.state.menu })}
                 isMenuOpen={this.state.menu}
-                img={
-                  this.state.chats[this.props.location.pathname.substring(6)] || {
-                    img: "https://via.placeholder.com/55"
-                  }
-                }
-                state={this.state.chats[this.props.location.pathname.substring(6)] || {}}
+                upload={uploadPicture}
+                uid={this.state.userLogin}
               />
             )}
           />
           <Route
             render={() => (
               <Navbar
-                state={this.state.chats[this.props.location.pathname.substring(6)] || {}}
+                state={
+                  this.state.chats[this.props.location.pathname.substring(6)] ||
+                  {}
+                }
                 status={this.state.statusFree}
                 openMenu={() => this.setState({ menu: !this.state.menu })}
                 click={() =>
                   this.setState({ statusFree: !this.state.statusFree })
                 }
                 isMenuOpen={this.state.menu}
-                img={
-                  this.state.chats[
-                    this.props.location.pathname.substring(6)
-                  ] || {
-                    img: "https://via.placeholder.com/55"
-                  }
-                }
-                isChat={this.props.location.pathname.includes("/chat")}
-                user={"a"}
-                history={this.state.history}
               />
             )}
           />
@@ -117,7 +108,7 @@ class App extends Component {
           <Route
             path="/favourites"
             exact
-            render={() => <Favourites favourites={this.state.chats} />}
+            render={() => <Favourites favourites={this.state.chats} users={this.state.users}/>}
           />
           <Route
             path="/new-chat"

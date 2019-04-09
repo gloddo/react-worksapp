@@ -12,7 +12,9 @@ export default class Messages extends Component {
             sent={el.sender===this.props.userLogin}
             text={el.text}
             date={el.date}
-            seen={el.seen}
+            mediaUrl={el.mediaUrl}
+            mediaName={el.mediaName}
+            mediaType={el.mediaType}
           />
         </div>
       );

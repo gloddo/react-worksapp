@@ -21,7 +21,7 @@ export default class Chat extends Component {
 
   send = event => {
     event.preventDefault()
-    sendMessages(this.state.inputValue, new Date(), this.props.match.params.id, this.props.userLogin)
+    sendMessages(this.state.inputValue, new Date(), this.props.match.params.id, this.props.userLogin, "", "", "")
 
   };
 

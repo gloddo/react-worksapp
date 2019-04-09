@@ -21,7 +21,7 @@ export default class FavouritesEntry extends Component {
               ball={true}
               modal={true}
             />
-            <NotifyBadge notify={this.props.notify} />
+            {this.props.notify && <NotifyBadge notify={this.props.notify} />}
           </div>
           <Label
             name={this.props.name}

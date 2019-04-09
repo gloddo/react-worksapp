@@ -6,7 +6,7 @@ export default class Messages extends Component {
   render() {
     return this.props.messages.map((el, i) => {
       return (
-        <div key={i} className={el.seen ? null : "unseen"}>
+        <div key={i} className={el.seen ? null : null}>
           <Message
             key={i}
             sent={el.sender===this.props.userLogin}

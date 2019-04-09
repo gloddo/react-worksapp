@@ -20,8 +20,6 @@ export default class Message extends Component {
   }
 
   render() {
-    console.log(this.props);
-    
     return (
       <article
         className={(this.props.sent ? "sent" : "received") + " chat-row"}

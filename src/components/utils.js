@@ -55,6 +55,7 @@ export const getChats = (callback, user) => {
       callback(chat);
     });
 };
+
 export const getRoles = callback => {
   let roles = [];
   db.collection("users")

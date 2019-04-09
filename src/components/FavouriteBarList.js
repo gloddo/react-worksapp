@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export default class FavouriteBarList extends Component {
   render() {
-    console.log(this.props.favourites);
     return this.props.favourites.map(fav => {
       let user = this.props.users[fav.partecipants]
       return (

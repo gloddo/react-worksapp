@@ -7,7 +7,6 @@ import Time from "./Time";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-
 export default class ChatListEntry extends Component {
   render() {
     let selectedClass = classNames({
@@ -32,7 +31,7 @@ export default class ChatListEntry extends Component {
           {this.props.date && (
             <div className="badges">
               <Time type="time" date={this.props.date} />
-              <NotifyBadge notify={this.props.notify} />
+              {this.props.notify && <NotifyBadge notify={this.props.notify} />}
             </div>
           )}
         </article>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-export default class Date extends Component {
+export default class NotifyBadge extends Component {
   render() {
     return (
       this.props.notify !== 0 && (

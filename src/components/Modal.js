@@ -6,9 +6,9 @@ import "./Modal.css";
 export default class Modal extends Component {
   render() {
     return (
-      <div className="modal">
+      <div onClick={this.props.onClick} className="modal">
         <div className="internalModal">
-          <div onClick={this.props.onClick} className="modalImg">
+          <div className="modalImg">
             <img src={this.props.img} alt="profile-pic" />
           </div>
           <div className="modalDiv">

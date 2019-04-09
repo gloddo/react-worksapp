@@ -10,9 +10,6 @@ export default class Favourites extends Component {
     };
   }
   render() {
-
-    console.log(this.props.favourites);
-    
     return (
       <section className="favourites">
         <div className="entries">

@@ -27,7 +27,7 @@ class ChatNavbar extends Component {
           />
           <input id="upload" accept="image/*, video/*" onChange={e => {
             const file = e.target.files[0]          
-            this.props.upload(file, "chat", chat.id, this.props.uid)
+            this.props.upload(file, "chat", this.props.uid, chat.id)
           }} type="file" style={{ display: "none" }} />
           <FaBars className="n-icon" onClick={this.props.openMenu} />
         </ul>

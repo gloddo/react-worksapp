@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 
-var config = {
+const config = {
   apiKey: "AIzaSyCyQTT5lSbckU1ReA0vAGgxgB2fc9doYw8",
   authDomain: "react-worksapp.firebaseapp.com",
   databaseURL: "https://react-worksapp.firebaseio.com",
@@ -9,7 +9,8 @@ var config = {
   messagingSenderId: "310211456876"
 };
 firebase.initializeApp(config);
-var db = firebase.firestore();
+const db = firebase.firestore();
+const storage = firebase.storage();
 
 export const login = (email, password) => {
   return firebase
@@ -99,12 +100,15 @@ export const onMessages = (callback, chatid) => {
     });
 };
 
-export const sendMessages = (text, time, chatID, sender) => {
+export const sendMessages = (text, time, chatID, sender, mediaUrl, mediaType, mediaName) => {
   let message = {
     text: text,
     time: time,
     chatID: chatID,
-    sender: sender
+    sender: sender,
+    mediaUrl: mediaUrl,
+    mediaType: mediaType,
+    mediaName: mediaName,
   };
   console.log(message);
   db.collection("messages")
@@ -133,4 +137,28 @@ export const autocomplete = (event, results) => {
     return result;
   }
   return [];
+};
+
+const updateProfilePic = (userId, mediaUrl) => {
+  db.collection("users")
+  .doc(userId)
+  .set({
+    img: mediaUrl,
+  })
+  .then(() => console.log("immagine aggiornata"))
+  .catch(error => console.log(error));
+}
+
+export const uploadPicture = (file, type, userId, chatId) => {
+  const url = `${type}-${chatId || userId}/${Date.now()}-${file.name}`;
+  var ref = storage.ref().child(url);
+  ref.put(file).then(async result => {
+    let mediaUrl = await result.ref.getDownloadURL();
+    let mediaType = result.metadata.contentType;
+    let mediaName = file.name
+    if (chatId){
+      return sendMessages("", new Date(), chatId, userId, mediaUrl, mediaType, mediaName)
+    }
+    return updateProfilePic(userId, mediaUrl)
+  });
 };

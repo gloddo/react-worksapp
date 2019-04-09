@@ -13,23 +13,23 @@ export default class Favourites extends Component {
     return (
       <section className="favourites">
         <div className="entries">
-          {this.props.favourites.map(([id, obj]) => {
-            if (obj.favs) {
+          {this.props.favourites.map(chat => {
+              let user = this.props.users[chat.partecipants]
               return (
                 <FavouritesEntry
-                  key={id}
-                  id={id}
-                  img={obj.img}
-                  name={obj.name}
-                  surname={obj.surname}
-                  notify={obj.notify}
-                  role={obj.role}
-                  state={obj.state}
+                  key={chat.id}
+                  id={chat.id}
+                  img={user.img}
+                  name={user.name}
+                  surname={user.surname}
+                  notify={user.notify }
+                  role={user.role}
+                  state={user.state}
                 />
               );
             }
-            return null;
-          })}
+
+          )}
         </div>
       </section>
     );

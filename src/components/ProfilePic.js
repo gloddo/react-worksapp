@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "./Modal";
 import Label from "./Label";
 import classNames from "classnames";
+import placeholder from "./res/photo.png"
 
 export default class ProfilePic extends Component {
   state = {
@@ -24,7 +25,7 @@ export default class ProfilePic extends Component {
               e.preventDefault();
               this.setState({ modalOn: false });
             }}
-            img={this.props.img}
+            img={this.props.img || placeholder}
           />
         )}
         <img
@@ -38,7 +39,7 @@ export default class ProfilePic extends Component {
               : undefined
           }
           className={imgClass}
-          src={this.props.img || "img/placeholder"}
+          src={this.props.img || placeholder}
           alt="pic"
         />
         <div className={this.props.ball && this.props.state} />

@@ -6,13 +6,15 @@ export default class Messages extends Component {
   render() {
     return this.props.messages.map((el, i) => {
       return (
-        <div key={i} className={el.seen ? null : "unseen"}>
+        <div key={i} className={el.seen ? null : null}>
           <Message
             key={i}
             sent={el.sender===this.props.userLogin}
             text={el.text}
             date={el.date}
-            seen={el.seen}
+            mediaUrl={el.mediaUrl}
+            mediaName={el.mediaName}
+            mediaType={el.mediaType}
           />
         </div>
       );

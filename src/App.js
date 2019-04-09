@@ -19,21 +19,12 @@ class App extends Component {
     login: false,
     menu: false,
     statusFree: true,
-    path: this.props.location.pathname,
-    history: this.props.history,
     userLogin: "",
     profileImg: "https://via.placeholder.com/58",
     roles: [],
     stateSearch: [],
     chats: []
   };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      path: nextProps.location.pathname,
-      history: nextProps.history
-    });
-  }
 
   onLogin(userId) {
     this.setState({ login: true, userLogin: userId });

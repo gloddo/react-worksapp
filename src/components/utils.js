@@ -103,7 +103,15 @@ export const onMessages = (callback, chatid) => {
     });
 };
 
-export const sendMessages = (text, time, chatID, sender, mediaUrl, mediaType, mediaName) => {
+export const sendMessages = (
+  text,
+  time,
+  chatID,
+  sender,
+  mediaUrl,
+  mediaType,
+  mediaName
+) => {
   let message = {
     text: text,
     time: time,
@@ -111,10 +119,11 @@ export const sendMessages = (text, time, chatID, sender, mediaUrl, mediaType, me
     sender: sender,
     mediaUrl: mediaUrl,
     mediaType: mediaType,
-    mediaName: mediaName,
+    mediaName: mediaName
   };
   console.log(message);
-  return db.collection("messages")
+  return db
+    .collection("messages")
     .add(message)
     .then(() => console.log("messaggio inviato"))
     .catch(error => console.log(error));
@@ -144,13 +153,13 @@ export const autocomplete = (event, results) => {
 
 const updateProfilePic = (userId, mediaUrl) => {
   db.collection("users")
-  .doc(userId)
-  .set({
-    img: mediaUrl,
-  })
-  .then(() => console.log("immagine aggiornata"))
-  .catch(error => console.log(error));
-}
+    .doc(userId)
+    .update({
+      img: mediaUrl
+    })
+    .then(() => console.log("immagine aggiornata"))
+    .catch(error => console.log(error));
+};
 
 export const uploadPicture = (file, type, userId, chatId) => {
   const url = `${type}-${chatId || userId}/${Date.now()}-${file.name}`;
@@ -158,33 +167,41 @@ export const uploadPicture = (file, type, userId, chatId) => {
   ref.put(file).then(async result => {
     let mediaUrl = await result.ref.getDownloadURL();
     let mediaType = result.metadata.contentType;
-    let mediaName = file.name
-    if (chatId){
-      return sendMessages("", new Date(), chatId, userId, mediaUrl, mediaType, mediaName)
+    let mediaName = file.name;
+    if (chatId) {
+      return sendMessages(
+        "",
+        new Date(),
+        chatId,
+        userId,
+        mediaUrl,
+        mediaType,
+        mediaName
+      );
     }
-    return updateProfilePic(userId, mediaUrl)
+    return updateProfilePic(userId, mediaUrl);
   });
 };
 
 export const updateState = (userId, state) => {
-  return db.collection("users")
-  .doc(userId)
-  .set({
-    state: state,
-  })
-  .then(() => console.log("stato aggiornato"))
-}
+  return db
+    .collection("users")
+    .doc(userId)
+    .update({
+      state: state
+    })
+    .then(() => console.log("stato aggiornato"));
+};
 
 export const onUpdateUsers = callback => {
   let users = {};
-  db.collection("users")
-    .onSnapshot(coll => {
-      coll.forEach(element => {
-        users[element.id] = {
-          ...element.data(),
-          id: element.id
-        };
-      });
-      callback(users);
+  return db.collection("users").onSnapshot(coll => {
+    coll.forEach(element => {
+      users[element.id] = {
+        ...element.data(),
+        id: element.id
+      };
     });
+    callback(users);
+  });
 };

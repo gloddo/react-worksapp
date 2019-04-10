@@ -13,9 +13,13 @@ export default class ProfilePic extends Component {
   render() {
     let imgClass = classNames({
       "profile-pic": true,
-      busy: this.props.state === "busy",
-      free: this.props.state === "free"
+      busy: !this.props.state,
+      free: this.props.state
     });
+    let ballClass = classNames({
+      busy: !this.props.state,
+      free: this.props.state
+    })
     return (
       <picture>
         {this.state.modalOn && (
@@ -42,7 +46,7 @@ export default class ProfilePic extends Component {
           src={this.props.img || placeholder}
           alt="pic"
         />
-        <div className={this.props.ball && this.props.state} />
+        <div className={this.props.ball && ballClass} />
         <Label username={this.props.username} />
       </picture>
     );
@@ -51,7 +55,7 @@ export default class ProfilePic extends Component {
 
 ProfilePic.propTypes = {
   img: PropTypes.string,
-  state: PropTypes.string,
+  state: PropTypes.bool,
   modal: PropTypes.bool,
   ball: PropTypes.bool
 };

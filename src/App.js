@@ -15,7 +15,7 @@ import {
   getChats,
   getRoles,
   updateState,
-  onUpdateUsers,
+  onUpdateUsers
 } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
@@ -34,15 +34,17 @@ class App extends Component {
     chats: []
   };
 
-  onLogin(userId) {
+  async onLogin(userId) {
     this.setState({ login: true, userLogin: userId });
-    getUsers(result => this.setState({ users: result }));
+    await getUsers(result => this.setState({ users: result }));
     getChats(result => this.setState({ chats: result }), userId);
     getRoles(result => this.setState({ roles: result }));
+    const status = this.state.users[this.state.userLogin].state;
+    this.setState({ statusFree: status });
   }
 
-  componentDidMount () {
-    onUpdateUsers(result => this.setState({ users: result }))
+  componentDidMount() {
+    onUpdateUsers(result => this.setState({ users: result }));
   }
 
   render() {
@@ -88,7 +90,10 @@ class App extends Component {
                 status={this.state.statusFree}
                 openMenu={() => this.setState({ menu: !this.state.menu })}
                 click={async () => {
-                  await updateState(this.state.userLogin, !this.state.statusFree)
+                  await updateState(
+                    this.state.userLogin,
+                    !this.state.statusFree
+                  );
                   this.setState({ statusFree: !this.state.statusFree });
                 }}
                 isMenuOpen={this.state.menu}

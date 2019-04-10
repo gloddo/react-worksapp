@@ -72,6 +72,8 @@ export const getMessages = (callback, chatid) => {
   let message = [];
   db.collection("messages")
     .where("chatID", "==", chatid)
+    .orderBy("time", "desc")
+    .limit(15)
     .get()
     .then(coll => {
       coll.forEach(element => {
@@ -87,7 +89,8 @@ export const getMessages = (callback, chatid) => {
 export const onMessages = (callback, chatid) => {
   db.collection("messages")
     .where("chatID", "==", chatid)
-    .orderBy("time", "asc")
+    .orderBy("time", "desc")
+    .limit(15)
     .onSnapshot(coll => {
       let message = [];
       coll.forEach(element => {
@@ -111,7 +114,7 @@ export const sendMessages = (text, time, chatID, sender, mediaUrl, mediaType, me
     mediaName: mediaName,
   };
   console.log(message);
-  db.collection("messages")
+  return db.collection("messages")
     .add(message)
     .then(() => console.log("messaggio inviato"))
     .catch(error => console.log(error));
@@ -161,4 +164,27 @@ export const uploadPicture = (file, type, userId, chatId) => {
     }
     return updateProfilePic(userId, mediaUrl)
   });
+};
+
+export const updateState = (userId, state) => {
+  return db.collection("users")
+  .doc(userId)
+  .set({
+    state: state,
+  })
+  .then(() => console.log("stato aggiornato"))
+}
+
+export const onUpdateUsers = callback => {
+  let users = {};
+  db.collection("users")
+    .onSnapshot(coll => {
+      coll.forEach(element => {
+        users[element.id] = {
+          ...element.data(),
+          id: element.id
+        };
+      });
+      callback(users);
+    });
 };

@@ -114,7 +114,7 @@
   width: 100vw;
   margin: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   position: absolute;
   bottom: 8vh;

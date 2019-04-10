@@ -9,7 +9,14 @@ import NewChat from "./components/NewChat";
 import SideMenu from "./components/SideMenu";
 import Login from "./components/Login";
 import "./App.css";
-import { uploadPicture, getUsers, getChats, getRoles } from "./components/utils";
+import {
+  uploadPicture,
+  getUsers,
+  getChats,
+  getRoles,
+  updateState,
+  onUpdateUsers,
+} from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
 class App extends Component {
@@ -34,12 +41,16 @@ class App extends Component {
     getRoles(result => this.setState({ roles: result }));
   }
 
-  render() { 
+  componentDidMount () {
+    onUpdateUsers(result => this.setState({ users: result }))
+  }
+
+  render() {
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
     // console.log(this.state.users, this.state.chats);
-    
+
     return (
       <div>
         <SideMenu
@@ -76,9 +87,10 @@ class App extends Component {
                 }
                 status={this.state.statusFree}
                 openMenu={() => this.setState({ menu: !this.state.menu })}
-                click={() =>
-                  this.setState({ statusFree: !this.state.statusFree })
-                }
+                click={async () => {
+                  await updateState(this.state.userLogin, !this.state.statusFree)
+                  this.setState({ statusFree: !this.state.statusFree });
+                }}
                 isMenuOpen={this.state.menu}
               />
             )}
@@ -108,7 +120,12 @@ class App extends Component {
           <Route
             path="/favourites"
             exact
-            render={() => <Favourites favourites={this.state.chats} users={this.state.users}/>}
+            render={() => (
+              <Favourites
+                favourites={this.state.chats}
+                users={this.state.users}
+              />
+            )}
           />
           <Route
             path="/new-chat"

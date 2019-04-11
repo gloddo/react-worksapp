@@ -51,7 +51,6 @@ class App extends Component {
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
-    // console.log(this.state.users, this.state.chats);
 
     return (
       <div>
@@ -146,7 +145,9 @@ class App extends Component {
               <Search
                 fn={results => this.setState({ stateSearch: results })}
                 state={this.state.stateSearch}
-                chats={Object.entries(this.state.chats)}
+                chats={this.state.chats}
+                userLogin={this.state.userLogin}
+                users={this.state.users}
               />
             )}
           />

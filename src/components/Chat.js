@@ -2,24 +2,30 @@ import React, { Component } from "react";
 import Messages from "./Messages";
 import "./Chat.css";
 import { FaPaperPlane } from "react-icons/fa";
-import { onMessages, sendMessages } from "./utils";
+import { sendMessages } from "./utils";
 
 export default class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
       inputValue: "",
-      messages: []
     };
   }
 
+  componentDidUpdate() {
+    document
+      .querySelector(".chat")
+      .scrollTo(0, document.querySelector(".chat").scrollHeight);
+  }
+
   componentDidMount() {
-    onMessages(result => {
-      this.setState({ messages: result });
-      document
-        .querySelector(".chat")
-        .scrollTo(0, document.querySelector(".chat").scrollHeight);
-    }, this.props.match.params.id);
+    console.log(this.props.messages);
+    
+    this.props.onMessages(this.props.match.params.id)
+  }
+
+  componentWillUnmount() {
+    this.props.onMessages(this.props.match.params.id)()
   }
 
   send = async event => {
@@ -42,7 +48,7 @@ export default class Chat extends Component {
     return (
       <section className="chat">
         <Messages
-          messages={this.state.messages}
+          messages={this.props.messages[this.props.match.params.id]}
           userLogin={this.props.userLogin}
         />
         <form autoComplete="off" className="text-input" onSubmit={this.send}>

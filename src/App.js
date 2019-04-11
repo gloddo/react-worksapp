@@ -15,7 +15,7 @@ import {
   updateState,
   onUsers,
   onChats,
-  addChat,
+  addChat
 } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
@@ -56,7 +56,7 @@ class App extends Component {
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
-    
+
     return (
       <div>
         <SideMenu
@@ -105,56 +105,64 @@ class App extends Component {
             )}
           />
         </Switch>
-          <Route
-            path="/"
-            exact
-            render={match => (
-              <ChatList
-                userLogin={this.state.userLogin}
-                users={this.state.users}
-                chats={this.state.chats}
-                match={match}
-              />
-            )}
-          />
-          <Route
-            path="/chat/:id"
-            exact
-            render={props => (
-              <Chat match={props.match} userLogin={this.state.userLogin} />
-            )}
-          />
-          <Route
-            path="/favourites"
-            exact
-            render={() => (
-              <Favourites
-                favourites={this.state.chats}
-                users={this.state.users}
-                userId={this.state.userLogin}
-              />
-            )}
-          />
-          <Route
-            path="/new-chat"
-            exact
-            render={() => (
-              <NewChat users={this.state.users} roles={this.state.roles} />
-            )}
-          />
-          <Route
-            path="/search"
-            exact
-            render={() => (
-              <Search
-                fn={results => this.setState({ stateSearch: results })}
-                state={this.state.stateSearch}
-                chats={this.state.chats}
-                userLogin={this.state.userLogin}
-                users={this.state.users}
-              />
-            )}
-          />
+        <Route
+          path="/"
+          exact
+          render={match => (
+            <ChatList
+              userLogin={this.state.userLogin}
+              users={this.state.users}
+              chats={this.state.chats}
+              match={match}
+            />
+          )}
+        />
+        <Route
+          path="/chat/:id"
+          exact
+          render={props => (
+            <Chat
+              match={props.match}
+              userLogin={this.state.userLogin}
+              setState={result => {
+                let obj = { ...this.state.messages };
+                result.length && (obj[result[0].chatID] = result);
+                this.setState({ messages: obj });
+              }}
+            />
+          )}
+        />
+        <Route
+          path="/favourites"
+          exact
+          render={() => (
+            <Favourites
+              favourites={this.state.chats}
+              users={this.state.users}
+              userId={this.state.userLogin}
+            />
+          )}
+        />
+        <Route
+          path="/new-chat"
+          exact
+          render={() => (
+            <NewChat users={this.state.users} roles={this.state.roles} />
+          )}
+        />
+        <Route
+          path="/search"
+          exact
+          render={() => (
+            <Search
+              fn={results => this.setState({ stateSearch: results })}
+              state={this.state.stateSearch}
+              chats={this.state.chats}
+              userLogin={this.state.userLogin}
+              users={this.state.users}
+            />
+          )}
+        />
       </div>
     );
   }

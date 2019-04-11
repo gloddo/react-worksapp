@@ -244,6 +244,7 @@ export const addFav = (chatId, userId, favs) => {
     .update({
       favourites: [...favs, chatId]
     });
+  }
 
 export const addChat = (id, user) => {
   console.log(id, user);

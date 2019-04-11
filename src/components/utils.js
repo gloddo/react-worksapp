@@ -87,7 +87,7 @@ export const getMessages = (callback, chatid) => {
 };
 
 export const onMessages = (callback, chatid) => {
-  db.collection("messages")
+  return db.collection("messages")
     .where("chatID", "==", chatid)
     .orderBy("time", "desc")
     .limit(15)
@@ -121,7 +121,9 @@ export const sendMessages = (
     mediaType: mediaType,
     mediaName: mediaName
   };
-  console.log(message);
+  db.collection("chats")
+    .doc(chatID)
+    .update({ date: time });
   return db
     .collection("messages")
     .add(message)
@@ -208,19 +210,20 @@ export const onUsers = callback => {
 };
 
 export const onChats = (callback, user) => {
-  let chat = [];
+  let chat = {};
   db.collection("chats")
     .where("partecipants", "array-contains", user)
+    .orderBy("date", "desc")
     .onSnapshot(coll => {
       coll.forEach(element => {
-        chat.push({
+        chat[element.id] = {
           ...element.data(),
           date: element.data().date.toDate(),
           partecipants: element
             .data()
             .partecipants.find(partecipant => partecipant !== user),
           id: element.id
-        });
+        };
       });
       callback(chat);
     });
@@ -241,4 +244,17 @@ export const addFav = (chatId, userId, favs) => {
     .update({
       favourites: [...favs, chatId]
     });
+
+export const addChat = (id, user) => {
+  console.log(id, user);
+  const chat = {
+    date: new Date(),
+    partecipants: [id, user]
+  };
+  return db
+    .collection("chats")
+    .add(chat)
+    .then(() => console.log("chat creata"))
+    .catch(error => console.log(error));
+
 };

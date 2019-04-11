@@ -15,7 +15,7 @@ export default class ChatListEntry extends Component {
       unread: this.props.notify
     });
     return (
-      <Link className="plain-text chatlist-entry" to={`/chat/${this.props.id}`}>
+      <Link className="plain-text chatlist-entry" to={this.props.url}>
         <article className={selectedClass}>
           <ProfilePic
             img={this.props.img}

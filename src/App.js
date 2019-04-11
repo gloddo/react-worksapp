@@ -14,7 +14,8 @@ import {
   getRoles,
   updateState,
   onUsers,
-  onChats
+  onChats,
+  addChat,
 } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
@@ -30,19 +31,25 @@ class App extends Component {
     profileImg: "https://via.placeholder.com/58",
     roles: [],
     stateSearch: [],
-    chats: []
+    chats: [],
+    messages: {}
   };
 
   async onLogin(userId) {
     this.setState({ login: true, userLogin: userId });
-    onChats(result => this.setState({ chats: result }), this.state.userLogin)
+    onChats(
+      result => this.setState({ chats: Object.values(result) }),
+      this.state.userLogin
+    );
     getRoles(result => this.setState({ roles: result }));
     const status = this.state.users[this.state.userLogin].state;
     this.setState({ statusFree: status });
   }
 
   componentDidMount() {
-    onUsers(result => {this.setState({ users: result })});
+    onUsers(result => {
+      this.setState({ users: result });
+    });
   }
 
   render() {

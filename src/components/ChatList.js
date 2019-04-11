@@ -8,6 +8,8 @@ import NewChat from "./NewChat";
 export default class ChatList extends Component {
 
   render() {
+    console.log(this.props.chats);
+     
     return (
       <section className="chat-list">
         {this.props.chats.map((chat) => {
@@ -15,7 +17,7 @@ export default class ChatList extends Component {
           return (
             <ChatListEntry
               key={user.id}
-              id={chat.id}
+              url={`/chat/${chat.id}`}
               img={user.img}
               name={user.name}
               surname={user.surname}

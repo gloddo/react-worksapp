@@ -49,6 +49,7 @@ class App extends Component {
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
+    
     return (
       <div>
         <SideMenu
@@ -141,7 +142,9 @@ class App extends Component {
               <Search
                 fn={results => this.setState({ stateSearch: results })}
                 state={this.state.stateSearch}
-                chats={Object.entries(this.state.chats)}
+                chats={this.state.chats}
+                userLogin={this.state.userLogin}
+                users={this.state.users}
               />
             )}
           />

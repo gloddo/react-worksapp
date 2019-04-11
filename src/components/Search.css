@@ -7,11 +7,17 @@
     height: 37px;
     border: 2px solid #0fa3b1;
     border-radius: 15px;
-    font-size: 1.2em;
-    padding: 0px 15px;
+    padding: 2px 15px;
+    
 }
+.search :focus {
+    outline:none;
+}
+
 .search input {
     width: 100%;
+    font-size: 1em;
+    border: 0px;
 }
 .chat-list-search {
     width: 100vw;

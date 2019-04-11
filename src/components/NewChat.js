@@ -5,7 +5,6 @@ import "./NewChat.css";
 
 export default class NewChat extends Component {
   render() {
-    console.log(this.props.users);
     
     return (
       <section className="new-chat">

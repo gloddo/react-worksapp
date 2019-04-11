@@ -22,6 +22,9 @@ export default class ChatListEntry extends Component {
             modal={true}
             state={this.props.state}
             ball={true}
+            chatId={this.props.id}
+            userId={this.props.userId}
+            users={this.props.users}
           />
           <Label
             name={this.props.name}

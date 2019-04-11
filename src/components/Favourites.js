@@ -14,7 +14,10 @@ export default class Favourites extends Component {
       <section className="favourites">
         <div className="entries">
           {this.props.favourites.map(chat => {
-              let user = this.props.users[chat.partecipants]
+            if (
+              ~this.props.users[this.props.userId].favourites.indexOf(chat.id)
+            ) {
+              let user = this.props.users[chat.partecipants];
               return (
                 <FavouritesEntry
                   key={chat.id}
@@ -22,14 +25,16 @@ export default class Favourites extends Component {
                   img={user.img}
                   name={user.name}
                   surname={user.surname}
-                  notify={user.notify }
+                  notify={user.notify}
                   role={user.role}
                   state={user.state}
+                  userId={this.props.userId}
+                  users={this.props.users}
                 />
               );
             }
-
-          )}
+            return null;
+          })}
         </div>
       </section>
     );

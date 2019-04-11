@@ -25,11 +25,13 @@ export default class ChatList extends Component {
               date={chat.date}
               notify={chat.notify}
               state={user.state}
+              userId={this.props.userLogin}
+              users={this.props.users}
             />
           );
         })}
 
-        <FavouritesBar favourites={this.props.chats} users={this.props.users}/>
+        <FavouritesBar favourites={this.props.chats} users={this.props.users} userId={this.props.userLogin}/>
       </section>
     );
   }

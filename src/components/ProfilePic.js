@@ -30,6 +30,9 @@ export default class ProfilePic extends Component {
               this.setState({ modalOn: false });
             }}
             img={this.props.img || placeholder}
+            userId={this.props.userId}
+            chatId={this.props.chatId}
+            users={this.props.users}
           />
         )}
         <img

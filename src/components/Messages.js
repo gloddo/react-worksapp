@@ -3,6 +3,12 @@ import Message from "./Message";
 import PropTypes from "prop-types";
 
 export default class Messages extends Component {
+  componentDidUpdate() {
+    document
+      .querySelector(".chat")
+      .scrollTo(0, document.querySelector(".chat").scrollHeight);
+  }
+  
   render() {
     return this.props.messages.map((el, i) => {
       return (

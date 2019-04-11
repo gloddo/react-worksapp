@@ -18,6 +18,7 @@ import {
   onUpdateUsers
 } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
+import EditProfile from "./components/EditProfile";
 
 class App extends Component {
   state = {
@@ -40,7 +41,10 @@ class App extends Component {
     getChats(result => this.setState({ chats: result }), userId);
     getRoles(result => this.setState({ roles: result }));
     const status = this.state.users[this.state.userLogin].state;
-    this.setState({ statusFree: status });
+    this.setState({
+      statusFree: status,
+      profileImg: this.state.users[userId].img
+    });
   }
 
   componentDidMount() {
@@ -147,6 +151,17 @@ class App extends Component {
                 fn={results => this.setState({ stateSearch: results })}
                 state={this.state.stateSearch}
                 chats={Object.entries(this.state.chats)}
+              />
+            )}
+          />
+          <Route
+            path="/edit-profile"
+            exact
+            render={() => (
+              <EditProfile
+                upload={uploadPicture}
+                img={this.state.profileImg}
+                uid={this.state.userLogin}
               />
             )}
           />

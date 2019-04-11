@@ -16,7 +16,6 @@ import {
   onUsers,
   onChats,
   addChat,
-  onMessages
 } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
@@ -125,11 +124,11 @@ class App extends Component {
               match={props.match}
               userLogin={this.state.userLogin}
               messages={this.state.messages}
-              onMessages={id =>
-                onMessages(result => {
-                  this.setState({ messages: result });
-                }, id)
-              }
+              setState={result => {
+                let obj = { ...this.state.messages };
+                result.length && (obj[result[0].chatID] = result)
+                this.setState({ messages: obj });
+              }}
             />
           )}
         />

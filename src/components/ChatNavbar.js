@@ -18,17 +18,30 @@ class ChatNavbar extends Component {
         <ul>
           <FaAngleLeft className="n-icon" onClick={this.props.history.goBack} />
           <FaSearch className="n-icon" onClick={this.props.showSearch} />
-          <ProfilePic state={user.state} modal={true} img={user.img} />
+          <ProfilePic
+            state={user.state}
+            modal={true}
+            img={user.img}
+            chatId={this.props.match.params.id}
+            userId={this.props.userLogin}
+            users={this.props.users}
+          />
           <FaPaperclip
             className="n-icon"
             onClick={() => {
               document.querySelector("#upload").click();
             }}
           />
-          <input id="upload" accept="image/*, video/*" onChange={e => {
-            const file = e.target.files[0]          
-            this.props.upload(file, "chat", this.props.uid, chat.id)
-          }} type="file" style={{ display: "none" }} />
+          <input
+            id="upload"
+            accept="image/*, video/*"
+            onChange={e => {
+              const file = e.target.files[0];
+              this.props.upload(file, "chat", this.props.userLogin, chat.id);
+            }}
+            type="file"
+            style={{ display: "none" }}
+          />
           <FaBars className="n-icon" onClick={this.props.openMenu} />
         </ul>
         <div className="chat-label">

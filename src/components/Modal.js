@@ -12,7 +12,7 @@ export default class Modal extends Component {
   }
   
   favouriteIcon(){
-    if(~this.props.users[this.props.userId].favourites.indexOf(this.props.chatId)){
+    if(this.props.users[this.props.userId].favourites.includes(this.props.chatId)){
       return <FaStar className="modal-icon" onClick={this.addFav}/>
     }
     return <FaRegStar className="modal-icon" onClick={this.addFav}/>

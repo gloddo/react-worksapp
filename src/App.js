@@ -80,7 +80,6 @@ class App extends Component {
                 openMenu={() => this.setState({ menu: !this.state.menu })}
                 isMenuOpen={this.state.menu}
                 upload={uploadPicture}
-                uid={this.state.userLogin}
               />
             )}
           />
@@ -124,6 +123,7 @@ class App extends Component {
             <Chat
               match={props.match}
               userLogin={this.state.userLogin}
+              messages={this.state.messages}
               setState={result => {
                 let obj = { ...this.state.messages };
                 result.length && (obj[result[0].chatID] = result);
@@ -147,7 +147,12 @@ class App extends Component {
           path="/new-chat"
           exact
           render={() => (
-            <NewChat users={this.state.users} roles={this.state.roles} />
+            <NewChat
+              users={this.state.users}
+              roles={this.state.roles}
+              newestChat={this.state.newestChat}
+              addChat={id => addChat(id, this.state.userLogin)}
+            />
           )}
         />
         <Route

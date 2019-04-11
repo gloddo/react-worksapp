@@ -87,7 +87,8 @@ export const getMessages = (callback, chatid) => {
 };
 
 export const onMessages = (callback, chatid) => {
-  return db.collection("messages")
+  return db
+    .collection("messages")
     .where("chatID", "==", chatid)
     .orderBy("time", "desc")
     .limit(15)
@@ -244,18 +245,24 @@ export const addFav = (chatId, userId, favs) => {
     .update({
       favourites: [...favs, chatId]
     });
+};
+
+export const addChat = (id, user, chats) => {
+  let create = true;
+  chats.forEach(el => {
+    if (el.partecipants.includes(id)) {
+      create = false;
+    }
+  });
+  if (create) {
+    const chat = {
+      date: new Date(),
+      partecipants: [id, user]
+    };
+    return db
+      .collection("chats")
+      .add(chat)
+      .then(() => console.log("chat creata"))
+      .catch(error => console.log(error));
   }
-
-export const addChat = (id, user) => {
-  console.log(id, user);
-  const chat = {
-    date: new Date(),
-    partecipants: [id, user]
-  };
-  return db
-    .collection("chats")
-    .add(chat)
-    .then(() => console.log("chat creata"))
-    .catch(error => console.log(error));
-
 };

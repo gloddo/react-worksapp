@@ -151,7 +151,7 @@ class App extends Component {
               users={this.state.users}
               roles={this.state.roles}
               newestChat={this.state.newestChat}
-              addChat={id => addChat(id, this.state.userLogin)}
+              addChat={id => addChat(id, this.state.userLogin, this.state.chats)}
             />
           )}
         />

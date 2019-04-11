@@ -193,9 +193,9 @@ export const updateState = (userId, state) => {
     .then(() => console.log("stato aggiornato"));
 };
 
-export const onUpdateUsers = callback => {
+export const onUsers = callback => {
   let users = {};
-  return db.collection("users").onSnapshot(coll => {
+  db.collection("users").onSnapshot(coll => {
     coll.forEach(element => {
       users[element.id] = {
         ...element.data(),
@@ -204,4 +204,23 @@ export const onUpdateUsers = callback => {
     });
     callback(users);
   });
+};
+
+export const onChats = (callback, user) => {
+  let chat = [];
+  db.collection("chats")
+    .where("partecipants", "array-contains", user)
+    .onSnapshot(coll => {
+      coll.forEach(element => {
+        chat.push({
+          ...element.data(),
+          date: element.data().date.toDate(),
+          partecipants: element
+            .data()
+            .partecipants.find(partecipant => partecipant !== user),
+          id: element.id
+        });
+      });
+      callback(chat);
+    });
 };

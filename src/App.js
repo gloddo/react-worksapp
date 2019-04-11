@@ -11,11 +11,10 @@ import Login from "./components/Login";
 import "./App.css";
 import {
   uploadPicture,
-  getUsers,
-  getChats,
   getRoles,
   updateState,
-  onUpdateUsers
+  onUsers,
+  onChats
 } from "./components/utils";
 import ChatNavbar from "./components/ChatNavbar";
 
@@ -36,22 +35,21 @@ class App extends Component {
 
   async onLogin(userId) {
     this.setState({ login: true, userLogin: userId });
-    await getUsers(result => this.setState({ users: result }));
-    getChats(result => this.setState({ chats: result }), userId);
+    onChats(result => this.setState({ chats: result }), this.state.userLogin)
     getRoles(result => this.setState({ roles: result }));
     const status = this.state.users[this.state.userLogin].state;
     this.setState({ statusFree: status });
   }
 
   componentDidMount() {
-    onUpdateUsers(result => this.setState({ users: result }));
+    onUsers(result => {this.setState({ users: result })});
   }
 
   render() {
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
-
+    
     return (
       <div>
         <SideMenu
@@ -100,7 +98,6 @@ class App extends Component {
             )}
           />
         </Switch>
-
         <Switch>
           <Route
             path="/"

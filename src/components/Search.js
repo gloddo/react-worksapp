@@ -7,33 +7,35 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: ""
+      selected: "",
+      usersSearch: []
     };
   }
-  onchangeInput = (event, chats) => {
-    let results = autocomplete(event.target.value, chats);
-    this.props.fn(results);
+  onchangeInput = (event, users) => {
+    let results = autocomplete(event.target.value, users);
+    this.setState({usersSearch: results})
+    console.log(results)
   };
   render() {
     return (
       <div className="search-tab">
         <div className="search">
-          <input onChange={e => this.onchangeInput(e, this.props.chats)} />
+          <input onChange={e => this.onchangeInput(e, this.props.users)} />
         </div>
         <section className="chat-list-search">
-          {this.props.state.map(([id, obj]) => {
+          {this.state.usersSearch.map((element) => {
             return (
                 <ChatListEntry
-                  key={id}
-                  img={obj.img}
-                  name={obj.name}
-                  id={id}
-                  surname={obj.surname}
-                  role={obj.role}
-                  state={obj.state}
-                  selected={id === this.state.selected}
+                  key={element.id}
+                  img={element.img}
+                  name={element.name}
+                  id={element.id}
+                  surname={element.surname}
+                  role={element.role}
+                  state={element.state}
+                  selected={element.id === this.state.selected}
                   click={() => {
-                    this.setState({ selected: id });
+                    this.setState({ selected: element.id });
                   }}
                 />
             );

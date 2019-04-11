@@ -56,6 +56,7 @@ class App extends Component {
     if (!this.state.login) {
       return <Login setLogOn={userId => this.onLogin(userId)} />;
     }
+    
     return (
       <div>
         <SideMenu

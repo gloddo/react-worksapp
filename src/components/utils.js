@@ -130,26 +130,26 @@ export const sendMessages = (
 };
 
 export const autocomplete = (event, users) => {
-  event = event.toLowerCase()
+  event = event.toLowerCase();
   if (event !== "") {
-    let results = Object.values(users)
-    let name = results.filter((element) => {
+    let results = Object.values(users);
+    let name = results.filter(element => {
       return element.name.toLowerCase().includes(event);
-    })       
-    let surname = results.filter((element) => {
+    });
+    let surname = results.filter(element => {
       return element.surname.toLowerCase().includes(event);
     });
-    let role = results.filter((element) => {
+    let role = results.filter(element => {
       return element.role.toLowerCase().includes(event);
     });
-    let username = results.filter((element) => {
+    let username = results.filter(element => {
       return element.username.toLowerCase().includes(event);
     });
     let result = name.concat(surname, role, username);
     result = [...new Set(result)];
     return result;
   }
-  return []
+  return [];
 };
 
 const updateProfilePic = (userId, mediaUrl) => {
@@ -223,5 +223,22 @@ export const onChats = (callback, user) => {
         });
       });
       callback(chat);
+    });
+};
+
+export const addFav = (chatId, userId, favs) => {
+  if (~favs.indexOf(chatId)) {
+    return db
+      .collection("users")
+      .doc(userId)
+      .update({
+        favourites: favs.filter(el => el !== chatId)
+      });
+  }
+  return db
+    .collection("users")
+    .doc(userId)
+    .update({
+      favourites: [...favs, chatId]
     });
 };

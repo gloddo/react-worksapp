@@ -98,7 +98,6 @@ class App extends Component {
             )}
           />
         </Switch>
-        <Switch>
           <Route
             path="/"
             exact
@@ -125,6 +124,7 @@ class App extends Component {
               <Favourites
                 favourites={this.state.chats}
                 users={this.state.users}
+                userId={this.state.userLogin}
               />
             )}
           />
@@ -148,7 +148,6 @@ class App extends Component {
               />
             )}
           />
-        </Switch>
       </div>
     );
   }

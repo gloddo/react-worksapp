@@ -20,6 +20,9 @@ export default class FavouritesEntry extends Component {
               state={this.props.state}
               ball={true}
               modal={true}
+              chatId={this.props.id}
+              userId={this.props.userId}
+              users={this.props.users}
             />
             {this.props.notify && <NotifyBadge notify={this.props.notify} />}
           </div>

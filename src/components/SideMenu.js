@@ -15,7 +15,7 @@ export default class SideMenu extends Component {
     });
     return (
       <aside className={asideClass}>
-        <div className="outer-click" onClick={this.props.closeMenu}/>
+        <div className="outer-click" onClick={this.props.closeMenu} />
         <FaAngleLeft
           color="black"
           className="n-icon"
@@ -24,9 +24,15 @@ export default class SideMenu extends Component {
         <ProfilePic img={this.props.img} username={this.props.username} />
         <div className="links">
           <div>
-            <Link to="/new-chat" onClick={this.props.closeMenu}>New Chat</Link>
-            <Link to="/favourites" onClick={this.props.closeMenu}>Favourites</Link>
-            <Link to="/profile" onClick={this.props.closeMenu}>Edit Profile</Link>
+            <Link to="/new-chat" onClick={this.props.closeMenu}>
+              New Chat
+            </Link>
+            <Link to="/favourites" onClick={this.props.closeMenu}>
+              Favourites
+            </Link>
+            <Link to="/edit-profile" onClick={this.props.closeMenu}>
+              Edit Profile
+            </Link>
           </div>
           <Link to="/" onClick={this.props.logout}>
             Logout

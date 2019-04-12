@@ -15,16 +15,16 @@ export default class EditProfile extends Component {
     return (
       <div>
         <input type="text" />
-        <button type="button">bottone</button>
+        <button type="button">submit</button>
       </div>
     );
   }
   changePass() {
-    if (this.state.changePassword) return "Change username";
+    if (this.state.changePassword) return "Change password";
     return (
       <div>
         <input type="text" />
-        <button type="button">bottone</button>
+        <button type="button">submit</button>
       </div>
     );
   }

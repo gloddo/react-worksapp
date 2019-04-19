@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import ProfilePic from "./ProfilePic";
 import "./EditProfile.css";
 export default class EditProfile extends Component {
